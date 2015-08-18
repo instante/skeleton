@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# post-merge hook to run after "dummize.sh" merge driver
+
+if [[ $1 -eq "rebase" ]]; then
+    bin/git/recompile.sh
+fi

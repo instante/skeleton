@@ -1,0 +1,17 @@
+#
+# Configuration applied only in debug mode
+#
+
+parameters:
+    webmasterEmail:
+
+
+nette:
+    application:
+        catchExceptions: no
+
+    container:
+        debugger: yes # aktivuje panel v Debugger baru
+
+
+services:

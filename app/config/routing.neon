@@ -1,0 +1,7 @@
+parameters:
+    routes:
+        secure: no #set to yes if web should run under HTTPS
+
+services:
+    routerFactory: App\Routing\RouterFactory
+    router: @routerFactory::createRouter( %consoleMode%, %routes.secure%, %debugMode% )

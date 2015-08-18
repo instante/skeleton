@@ -1,0 +1,30 @@
+{
+    "name": "YourAppName",
+    "version": "0.1.0",
+    "description": "",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Proof & Reason, s.r.o.",
+    "license": "proprietary",
+    "devDependencies": {
+        "chai": "^1.8.1",
+        "colors": "0.6.x",
+        "express": "4.5.x",
+        "grunt": "~0.4.2",
+        "grunt-contrib-clean": "~0.4.0",
+        "grunt-contrib-copy": "^0.8.0",
+        "grunt-contrib-jshint": "~0.6.0",
+        "grunt-contrib-less": "^1.0.1",
+        "grunt-contrib-nodeunit": "~0.2.0",
+        "grunt-contrib-requirejs": "^0.4.4",
+        "grunt-contrib-watch": "^0.6.1",
+        "grunt-csssplit": "^0.4.0",
+        "grunt-lib-phantomjs": "0.6.x",
+        "grunt-mocha-require-phantom": "^0.6.1",
+        "grunt-text-replace": "^0.4.0",
+        "madge": "^0.5.0",
+        "requirejs": "^2.1.20",
+        "squirejs": "^0.2.1"
+    }
+}

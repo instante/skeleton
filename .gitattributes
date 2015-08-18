@@ -1,0 +1,4 @@
+www/js/*.min.js -diff merge=dummize
+www/js/*.min.js.map -diff merge=dummize
+www/css/*.min.css -diff merge=dummize
+www/css/*.min.css.map -diff merge=dummize

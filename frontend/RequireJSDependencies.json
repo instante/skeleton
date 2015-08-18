@@ -1,0 +1,40 @@
+{
+    "bootstrap": [
+        "instante/container"
+    ],
+    "instante/configurator": [],
+    "instante/container": [
+        "instante/configurator",
+        "instante/core"
+    ],
+    "instante/core": [
+        "jquery",
+        "nette/ajax",
+        "nette/core",
+        "window"
+    ],
+    "instante/debug/console": [],
+    "instante/debug/live-tracy-errors": [
+        "jquery",
+        "nette/ajax",
+        "window"
+    ],
+    "instante/events": [
+        "instante/debug/console"
+    ],
+    "instante/ui/displayablePassword": [
+        "$document",
+        "jquery"
+    ],
+    "nette/ajax": [
+        "jquery",
+        "window"
+    ],
+    "nette/core": [],
+    "require-config": [],
+    "jquery": [],
+    "window": [],
+    "document": [],
+    "$window": [],
+    "$document": []
+}

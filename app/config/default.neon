@@ -1,0 +1,40 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+includes:
+    - database.neon
+    - services.neon
+    - routing.neon
+    - users.neon
+    - extensions.neon
+parameters:
+    webmasterEmail: john.doe@example.com
+    paths:
+        frontend: %paths.root%/frontend
+
+php:
+    date.timezone: Europe/Prague
+    # zlib.output_compression: yes
+
+
+nette:
+    application:
+        errorPresenter: Error
+        catchExceptions: yes
+        mapping:
+            *: App\*Module\Presenters\*Presenter
+
+    debugger:
+        email: %webmasterEmail%
+        strictMode: yes
+
+    session:
+        autoStart: smart
+        expiration: 14 days
+        savePath: "%tempDir%/sessions"
+
+latte:
+    xhtml: no

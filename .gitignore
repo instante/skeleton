@@ -1,0 +1,19 @@
+libs/composer
+app/config/local.neon
+app/config/environment
+bin/run-tests.cmd
+
+temp
+log
+!temp/.htaccess
+!temp/web.config
+!log/.htaccess
+!log/web.config
+
+frontend/bower_components/
+frontend/node_modules/
+frontend/tmp/
+
+.idea
+
+# composer.lock is ignored only for Instante blank project package purposes, remove when creating new project!

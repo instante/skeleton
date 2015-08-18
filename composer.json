@@ -1,0 +1,16 @@
+{
+    "name": "instante/skeleton",
+    "description": "PROJECT NAME",
+    "config": {
+        "vendor-dir": "./libs/composer"
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "nette/nette": "2.3.*",
+        "instante/require-js": "~1.0",
+        "instante/doctrine": "~1.0"
+    },
+    "require-dev": {
+        "nette/tester": "@dev"
+    }
+}

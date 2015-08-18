@@ -1,0 +1,24 @@
+{
+    "name": "YourAppName",
+    "version": "0.1.0",
+    "authors": [
+        "Proof & Reason"
+    ],
+    "description": "",
+    "moduleType": [
+        "globals"
+    ],
+    "license": "proprietary",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "bootstrap": "3.3.4",
+        "jquery": "1.11.2",
+        "requirejs": "2.1.19"
+    }
+}

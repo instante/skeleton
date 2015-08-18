@@ -1,0 +1,8 @@
+#
+# Simple used services.
+# For services that are part of a bigger component, use separate file
+# i.e. routes.neon for routing services and other configuration
+#
+
+services:
+    - Instante\RequireJS\JSModuleContainer(%paths.frontend%/RequireJSDependencies.json)

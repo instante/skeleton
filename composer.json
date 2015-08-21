@@ -11,6 +11,7 @@
         "instante/doctrine": "~1.0"
     },
     "require-dev": {
-        "nette/tester": "@dev"
+        "nette/tester": "@dev",
+        "squizlabs/php_codesniffer": "2.*"
     }
 }

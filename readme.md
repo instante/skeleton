@@ -38,19 +38,22 @@
       (executable under both unix/windows) and adjust path to php.ini.
 
 
-2.Develop/compile LESS:
-as all PHP LESS compilers have been found too slow or not up to date,
-we recommend using grunt for on-the-fly LESS development.
+2. Develop/compile frontend:
 
 install node.js, then use shell commands:
 ```
 # setup
-your-project/app/less$ npm install -g grunt-cli
-your-project/app/less$ npm install
+# install grunt CLI and bower globally to your node.js, if you haven't installed it before
+your-project/frontend$ npm install -g grunt-cli
+your-project/frontend$ npm install -g bower
+
+# install local grunt packages
+your-project/frontend$ npm install
+
 # start watchdog
-your-project/app/less$ grunt
+your-project/frontend$ grunt
 ```
-the watchdog starts to automatically compile less on any change.
+the watchdog starts to automatically compile less and js on any change.
 
 3.composer:
 install new dependency - library:

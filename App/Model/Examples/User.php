@@ -1,5 +1,5 @@
 <?php
-namespace App\Example;
+namespace App\Model\Examples;
 
 use Doctrine\ORM\Mapping as ORM;
 

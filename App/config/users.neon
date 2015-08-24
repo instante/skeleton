@@ -1,0 +1,7 @@
+# doctrine user authenticator
+
+services:
+    nette.userStorage: Instante\Doctrine\Users\UserStorage(
+        @doctrine.default.entityManager::getRepository('App\Model\Examples\User') )
+    authenticator: Instante\Doctrine\Users\Authenticator(
+        @doctrine.default.entityManager::getRepository('App\Model\Examples\User') )

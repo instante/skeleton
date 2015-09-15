@@ -9,6 +9,6 @@ Tester\Environment::setup();
 $loader = new Nette\Loaders\RobotLoader;
 $loader
     ->setCacheStorage(new Nette\Caching\Storages\FileStorage($baseDir . 'temp/cache'))
-    ->addDirectory($baseDir . 'app')
+    ->addDirectory($baseDir . 'App')
     ->addDirectory($baseDir . 'tests')
     ->register();

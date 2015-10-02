@@ -33,18 +33,18 @@
             ini_set('display_errors','on');
             error_reporting(E_ALL);
 
-            if (!file_exists(dirname(__FILE__) . '/../composer.lock')) {
+            if (!file_exists(__DIR__ . '/../composer.lock')) {
                 print_error_message('Composer was not installed, you need to run "composer install" first');
                 exit;
             }
 
-            require_once dirname(__FILE__) . '/../libs/composer/nette/neon/src/neon.php';
-            require_once dirname(__FILE__) . '/../libs/composer/nette/utils/src/Utils/Json.php';
+            require_once __DIR__ . '/../libs/composer/nette/neon/src/neon.php';
+            require_once __DIR__ . '/../libs/composer/nette/utils/src/Utils/Json.php';
 
             $errors = 0;
             $messages = [];
 
-            $configFolderPath = dirname(__FILE__) . '/../app/config';
+            $configFolderPath = __DIR__ . '/../app/config';
             $defaultNeonFilePath = $configFolderPath . '/default.neon';
             $defaultNeon = file_get_contents($defaultNeonFilePath);
             $defaultNeonConfig = \Nette\Neon\Neon::decode($defaultNeon);
@@ -58,7 +58,7 @@
 '. \Nette\Neon\Neon::encode($defaultNeonConfig, \Nette\Neon\Neon::BLOCK);
             file_put_contents($defaultNeonFilePath, $defaultNeon);
 
-            $logFolderPath = dirname(__FILE__) . '/../log';
+            $logFolderPath = __DIR__ . '/../log';
             if (!is_dir($logFolderPath) && !@mkdir($logFolderPath)) {
                 $errors++;
                 print_error_message('Log folder could not be created at [' . $logFolderPath . ']');
@@ -67,7 +67,7 @@
             }
 
 
-            $cacheFolderPath = dirname(__FILE__) . '/../temp/cache';
+            $cacheFolderPath = __DIR__ . '/../temp/cache';
             if (!is_dir($cacheFolderPath) && !@mkdir($cacheFolderPath, 0777, TRUE)) {
                 $errors++;
                 print_error_message('Cache folder could not be created at [' . $cacheFolderPath . ']');
@@ -133,7 +133,7 @@
             }
 
 
-            $composerJsonFilePath = dirname(__FILE__) . '/../composer.json';
+            $composerJsonFilePath = __DIR__ . '/../composer.json';
             $composerJson = file_get_contents($composerJsonFilePath);
             $composerJsonConfig = \Nette\Utils\Json::decode($composerJson, \Nette\Utils\Json::FORCE_ARRAY);
             $composerJsonConfig['name'] = $_POST['project_name'];
@@ -155,7 +155,7 @@
             }
 
 
-            $bowerJsonFilePath = dirname(__FILE__) . '/../frontend/bower.json';
+            $bowerJsonFilePath = __DIR__ . '/../frontend/bower.json';
             $bowerJson = file_get_contents($bowerJsonFilePath);
             $bowerJsonConfig = \Nette\Utils\Json::decode($bowerJson, \Nette\Utils\Json::FORCE_ARRAY);
             $bowerJsonConfig['name'] = $_POST['project_name'];
@@ -174,7 +174,7 @@
             }
 
 
-            $packageJsonFilePath = dirname(__FILE__) . '/../frontend/package.json';
+            $packageJsonFilePath = __DIR__ . '/../frontend/package.json';
             $packageJson = file_get_contents($packageJsonFilePath);
             $packageJsonConfig = \Nette\Utils\Json::decode($packageJson, \Nette\Utils\Json::FORCE_ARRAY);
             $packageJsonConfig['name'] = $_POST['project_name'];
@@ -192,8 +192,8 @@
             }
 
 
-            $instanteCodingStandardSrc = dirname(__FILE__) . '/../codingStandards/Instante';
-            $instanteCodingStandardInCodeSinffer = dirname(__FILE__) . '/../libs/composer/squizlabs/php_codesniffer/CodeSniffer/Standards/Instante';
+            $instanteCodingStandardSrc = __DIR__ . '/../codingStandards/Instante';
+            $instanteCodingStandardInCodeSinffer = __DIR__ . '/../libs/composer/squizlabs/php_codesniffer/CodeSniffer/Standards/Instante';
             if (!is_link($instanteCodingStandardInCodeSinffer) && FALSE === symlink($instanteCodingStandardSrc, $instanteCodingStandardInCodeSinffer)) {
                 $errors++;
                 print_error_message('Could not create symlink for Instante coding standards at [' . $instanteCodingStandardInCodeSinffer . ']');

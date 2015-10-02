@@ -7,7 +7,7 @@
 require_once __DIR__ . '/../unit/bootstrap.php';
 $rootDir = __DIR__ . '/../../';
 
-$configDir = $rootDir . 'App/config';
+$configDir = $rootDir . 'app/config';
 
 $paths = [ //additional paths
     'root' => $rootDir,
@@ -17,7 +17,7 @@ $paths = [ //additional paths
 
 
 $configurator = new Nette\Configurator;
-$configurator->addParameters(['appDir' => __DIR__ . '/../../App']);
+$configurator->addParameters(['appDir' => __DIR__ . '/../../app']);
 $configurator->setTempDirectory($rootDir . 'temp');
 
 

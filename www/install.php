@@ -44,7 +44,7 @@
             $errors = 0;
             $messages = [];
 
-            $configFolderPath = dirname(__FILE__) . '/../App/config';
+            $configFolderPath = dirname(__FILE__) . '/../app/config';
             $defaultNeonFilePath = $configFolderPath . '/default.neon';
             $defaultNeon = file_get_contents($defaultNeonFilePath);
             $defaultNeonConfig = \Nette\Neon\Neon::decode($defaultNeon);

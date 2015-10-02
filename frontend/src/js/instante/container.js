@@ -31,6 +31,14 @@ define('instante/container', ['instante/core', 'instante/configurator'], functio
             require([moduleName]);
         };
 
+        /**
+         * Makes possible to get module configuration via self.config, like:
+         * <code>
+         * define('some/module', [], function me() {
+         *     console.log(me.config);
+         * }
+         * </code>
+         */
         var initAutoConfigureModules = function ()
         {
             var setupAutoConfigureContext = function (context)

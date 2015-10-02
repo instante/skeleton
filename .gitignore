@@ -1,7 +1,6 @@
 libs/composer
 app/config/local.neon
 app/config/environment
-bin/run-tests.cmd
 
 temp
 log

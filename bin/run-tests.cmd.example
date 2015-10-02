@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# customize path to php.ini (X:/www-server/PHP/ in this example)
-"../libs/composer/bin/tester.bat" -c "X:/www-server/PHP/" "../tests"

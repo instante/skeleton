@@ -2,3 +2,8 @@ define('window', [], function() { return window; });
 define('document', [], function() { return document; });
 define('$window', [], function() { return $(window); });
 define('$document', [], function() { return $(document); });
+define('Date', [], function() { return Date; });
+define('Math', [], function() { return Math; });
+define('Object', [], function() { return Object; });
+define('JSON', [], function() { return JSON; });
+define('RegExp', [], function() { return RegExp; });

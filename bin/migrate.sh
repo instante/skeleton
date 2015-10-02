@@ -1,4 +1,5 @@
-cd "$(dirname "$0")"
-cd ".."
+#!/usr/bin/env bash
+pushd "$(dirname "$0")/.."
+
 php www/index.php migrations:migrate --no-interaction
-cd "$(dirname "$0")"
+popd

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 #
 # post-merge hook to run after "dummize.sh" merge driver
 

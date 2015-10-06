@@ -18,7 +18,7 @@ $paths = [ //additional paths
 
 $configurator = new Nette\Configurator;
 $configurator->addParameters(['appDir' => __DIR__ . '/../../app']);
-$configurator->setTempDirectory($rootDir . 'temp');
+$configurator->setTempDirectory(TEMP_DIR);
 
 
 $configurator->addConfig("$configDir/default.neon");

@@ -13,4 +13,5 @@ frontend/bower_components/
 frontend/node_modules/
 frontend/tmp/
 
-# composer.lock is ignored only for Instante blank project package purposes, remove when creating new project!
+tests/temp
+tests/php.ini

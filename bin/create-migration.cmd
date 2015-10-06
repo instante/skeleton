@@ -1,8 +1,10 @@
+pushd "%~dp0"
+
 call migrate
-pushd "%~dp0\.."
-del /s /q "temp\cache"
-del /s /q "temp\proxies"
-del "temp\btfj.dat"
+call purge-cache
+
+cd ..
 php "www\index.php" orm:generate-proxies
 php "www\index.php" migrations:diff
+
 popd

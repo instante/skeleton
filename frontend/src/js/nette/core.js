@@ -1,10 +1,5 @@
-/**
- * @author Jan Svatoš (jan.svatos@proofreason.com)
- */
-
-define('nette/core', [], function ()
+define('nette/core', ['window'], function (window)
 {
-    var window = typeof window !== 'undefined' ? window : this;
     if (!window.JSON) {
         throw 'Nette requires JSON support';
     }

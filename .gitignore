@@ -1,17 +1,17 @@
-libs/composer
-app/config/local.neon
-app/config/environment
+/libs/composer
+/app/config/local.neon
+/app/config/environment
 
-temp
-log
+/temp
+/log
 !temp/.htaccess
 !temp/web.config
 !log/.htaccess
 !log/web.config
 
-frontend/bower_components/
-frontend/node_modules/
-frontend/tmp/
+/frontend/bower_components/
+/frontend/node_modules/
+/frontend/tmp/
 
-tests/temp
-tests/php.ini
+/tests/temp
+/tests/php.ini

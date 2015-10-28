@@ -1,24 +1,25 @@
-```
-#!
-
-
-
-                       ██╗███╗   ██╗███████╗████████╗ █████╗ ███╗   ██╗████████╗███████╗
- ▄ ██╗▄▄ ██╗▄▄ ██╗▄    ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗████╗  ██║╚══██╔══╝██╔════╝    ▄ ██╗▄▄ ██╗▄▄ ██╗▄
-  ████╗ ████╗ ████╗    ██║██╔██╗ ██║███████╗   ██║   ███████║██╔██╗ ██║   ██║   █████╗       ████╗ ████╗ ████╗
- ▀╚██╔▀▀╚██╔▀▀╚██╔▀    ██║██║╚██╗██║╚════██║   ██║   ██╔══██║██║╚██╗██║   ██║   ██╔══╝      ▀╚██╔▀▀╚██╔▀▀╚██╔▀
-   ╚═╝   ╚═╝   ╚═╝     ██║██║ ╚████║███████║   ██║   ██║  ██║██║ ╚████║   ██║   ███████╗      ╚═╝   ╚═╝   ╚═╝
-                       ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝
-
-
-
-```
+      ___           _              _                   //
+     |_ _|_ __  ___| |_ __ _ _ __ | |_ ___       .∩∩.//
+      | || '_ \/ __| __/ _` | '_ \| __/ _ \     .∩∩∩∩.
+      | || | | \__ \ || (_| | | | | ||  __/    \     ) /
+     |___|_| |_|___/\__\__,_|_| |_|\__\___|     \_____/
 
 0. Create new application using Instante:
-    a) copy instante folder (without .git subfolder) to your new project folder
-    c) setup new git repository
-    d) customize this readme.md to correspond to your new project (and this section, 0, is not needed anymore)
-    e) continue to Deploy application
+    1. install skeleton using composer:
+```
+composer create-project instante/skeleton .
+```
+    1. customize this readme.md to correspond to your new project (and remove this "Create new application" section)
+    1. use bin/init-project.php to initialize your new project or do following steps manually:
+        1. customize composer.json, frontend/package.json, frontend/bower.json with your own project name, description, license etc.
+        1. initialize new git repository in project's folder:
+```
+git init
+bin/git/setup-git.{cmd|sh}
+git add .
+git commit -m "initial commit"
+```
+
 
 1. Deploy application:
     a) setup git behavior using bin/git/setup-git.{cmd|sh} - disables autocrlf and sets processes to automatically

@@ -9,7 +9,7 @@ $context = require 'bootstrap.php';
 /**
  * A simple check of functionality of integration tests bootstrap
  */
-class BootstrapTest extends AbstractDatabaseTest
+class BootstrapTest extends DatabaseTest
 {
     public function testNothing()
     {

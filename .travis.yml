@@ -9,7 +9,7 @@ before_script:
   - mkdir deploytest
   - cd deploytest
   - composer self-update
-  - composer create-project instante/skeleton . --no-interaction --stability="dev" --prefer-source
+  - composer create-project instante/skeleton . dev-develop --no-interaction --stability="dev" --prefer-source
   - ./libs/composer/bin/parallel-lint -e php,phpt --exclude vendor .
 
 script: ./tests/skeleton-test.sh

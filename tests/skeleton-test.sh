@@ -6,7 +6,7 @@ PHP_EXT=`php -r "echo ini_get('extension_dir');"`
 echo "" >> ./tests/php.ini # empty line
 echo "extension_dir=$PHP_EXT" >> ./tests/php.ini
 
-echo -e "test@doe.com\nfoo/bar\ndescriptiontest\nlicensetest\nvertest\nauthorname\nauthormail\n" | php ./bin/deployment/init-project.php
+echo -e "test@doe.com\nfoo/bar\ndescriptiontest\nlicensetest\nvertest\nauthorname\nauthormail\n" | php ./bin/deployment/init-project.php 1> /dev/null
 
 if [ $? -ne 0 ]; then
     >&2 echo "failed executing init-project.php: returned exitcode $?"

@@ -40,9 +40,6 @@ git commit -m "initial commit"
         - temp/sessions
     f) call `php www/index.php orm:generate-proxies`
     g) call `php www/index.php migrations:migrate`
----------
-    h) for running tests, copy "bin/run-tests.cmd.example" to "bin/run-tests.cmd"
-      (executable under both unix/windows) and adjust path to php.ini.
 
 
 2. Develop/compile frontend:

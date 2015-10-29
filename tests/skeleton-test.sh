@@ -54,6 +54,8 @@ if [ `cat frontend/bower.json | grep "foo/bar" | wc -l` != 1 \
 fi
 >&2 echo "frontend/bower.json configured"
 
+echo "development" > app/config/environment
+cp app/config/local.neon.example app/config/local.neon
 ./libs/composer/bin/tester ./tests -p php
 EXITCODE=$?
 

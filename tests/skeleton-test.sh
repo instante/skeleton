@@ -59,4 +59,9 @@ if [ `cat frontend/bower.json | grep "foo/bar" | wc -l` != 1 \
 fi
 >&2 echo "frontend/bower.json configured"
 
+./libs/composer/bin/tester ./tests -p php -c ./tests
+EXITCODE=$?
+
 popd
+
+exit "$EXITCODE"

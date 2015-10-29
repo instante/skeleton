@@ -4,12 +4,12 @@ namespace Instante\Tests;
 
 use Tester\Assert;
 
-$context = require 'bootstrap.php';
+$context = require '../integration/bootstrap.php';
 
 /**
  * A simple check of functionality of integration tests bootstrap
  */
-class BootstrapTest extends DatabaseTest
+class TestEnvironmentTest extends DatabaseTest
 {
     public function testNothing()
     {
@@ -17,4 +17,4 @@ class BootstrapTest extends DatabaseTest
     }
 }
 
-(new BootstrapTest($context))->run();
+(new TestEnvironmentTest($context))->run();

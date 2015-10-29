@@ -4,6 +4,8 @@
  * init test dependent on nette container
  */
 
+use Nette\Configurator;
+
 require_once __DIR__ . '/../unit/bootstrap.php';
 $rootDir = __DIR__ . '/../../';
 
@@ -16,7 +18,7 @@ $paths = [ //additional paths
 ];
 
 
-$configurator = new Nette\Configurator;
+$configurator = new Configurator;
 $configurator->addParameters(['appDir' => __DIR__ . '/../../app']);
 $configurator->setTempDirectory(TEMP_DIR);
 

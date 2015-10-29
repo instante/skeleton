@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 pushd "$(dirname "$0")/.."
 
-cp ./tests/php-unix.ini ./tests/php.ini
-PHP_EXT=`php -r "echo ini_get('extension_dir');"`
-echo "" >> ./tests/php.ini # empty line
-echo "extension_dir=$PHP_EXT" >> ./tests/php.ini
-
 echo -e "test@doe.com\nfoo/bar\ndescriptiontest\nlicensetest\nvertest\nauthorname\nauthormail\n" | php ./bin/deployment/init-project.php 1> /dev/null
 
 if [ $? -ne 0 ]; then
@@ -59,7 +54,7 @@ if [ `cat frontend/bower.json | grep "foo/bar" | wc -l` != 1 \
 fi
 >&2 echo "frontend/bower.json configured"
 
-./libs/composer/bin/tester ./tests -p php -c ./tests
+./libs/composer/bin/tester ./tests -p php
 EXITCODE=$?
 
 popd

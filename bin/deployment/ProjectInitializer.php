@@ -117,12 +117,12 @@ class ProjectInitializer
         $bowerJsonFilePath = $this->dir . '/frontend/bower.json';
         $bowerJson = file_get_contents($bowerJsonFilePath);
         $bowerJsonConfig = Json::decode($bowerJson, Json::FORCE_ARRAY);
-        $bowerJsonConfig['name'] = $_POST['project_name'];
-        $bowerJsonConfig['description'] = $_POST['project_description'];
-        $bowerJsonConfig['license'] = $_POST['project_license'];
-        $bowerJsonConfig['version'] = $_POST['project_version'];
+        $bowerJsonConfig['name'] = $this->projectName;
+        $bowerJsonConfig['description'] = $this->projectDescription;
+        $bowerJsonConfig['license'] = $this->projectLicense;
+        $bowerJsonConfig['version'] = $this->projectVersion;
         $bowerJsonConfig['authors'] = [
-            $_POST['author_name'],
+            $this->authorName,
         ];
         $bowerJson = Json::encode($bowerJsonConfig, Json::PRETTY);
         if (file_put_contents($bowerJsonFilePath, $bowerJson) === FALSE) {
@@ -134,11 +134,11 @@ class ProjectInitializer
         $packageJsonFilePath = $this->dir . '/frontend/package.json';
         $packageJson = file_get_contents($packageJsonFilePath);
         $packageJsonConfig = Json::decode($packageJson, Json::FORCE_ARRAY);
-        $packageJsonConfig['name'] = $_POST['project_name'];
-        $packageJsonConfig['description'] = $_POST['project_description'];
-        $packageJsonConfig['license'] = $_POST['project_license'];
-        $packageJsonConfig['version'] = $_POST['project_version'];
-        $packageJsonConfig['author'] = $_POST['author_name'];
+        $packageJsonConfig['name'] = $this->projectName;
+        $packageJsonConfig['description'] = $this->projectDescription;
+        $packageJsonConfig['license'] = $this->projectLicense;
+        $packageJsonConfig['version'] = $this->projectVersion;
+        $packageJsonConfig['author'] = $this->authorName;
         $packageJson = Json::encode($packageJsonConfig, Json::PRETTY);
         file_put_contents($packageJsonFilePath, $packageJson);
         if (file_put_contents($packageJsonFilePath, $packageJson) === FALSE) {
@@ -151,14 +151,14 @@ class ProjectInitializer
         $composerJsonFilePath = $this->dir . '/composer.json';
         $composerJson = file_get_contents($composerJsonFilePath);
         $composerJsonConfig = Json::decode($composerJson, Json::FORCE_ARRAY);
-        $composerJsonConfig['name'] = $_POST['project_name'];
-        $composerJsonConfig['description'] = $_POST['project_description'];
-        $composerJsonConfig['license'] = $_POST['project_license'];
-        $composerJsonConfig['version'] = $_POST['project_version'];
+        $composerJsonConfig['name'] = $this->projectName;
+        $composerJsonConfig['description'] = $this->projectDescription;
+        $composerJsonConfig['license'] = $this->projectLicense;
+        $composerJsonConfig['version'] = $this->projectVersion;
         $composerJsonConfig['authors'] = [
             [
-                'name' => $_POST['author_name'],
-                'email' => $_POST['author_email'],
+                'name' => $this->authorName,
+                'email' => $this->authorEmail,
             ],
         ];
         $composerJson = Json::encode($composerJsonConfig, Json::PRETTY);

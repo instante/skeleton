@@ -5,6 +5,11 @@
       | || | | \__ \ || (_| | | | | ||  __/    \     ) /
      |___|_| |_|___/\__\__,_|_| |_|\__\___|     \_____/
 
+
+[![Build Status](https://travis-ci.org/instante/skeleton.svg?branch=master)](https://travis-ci.org/instante/skeleton)
+[![Downloads this Month](https://img.shields.io/packagist/dm/instante/skeleton.svg)](https://packagist.org/packages/instante/skeleton)
+[![Latest stable](https://img.shields.io/packagist/v/instante/skeleton.svg)](https://packagist.org/packages/instante/skeleton)
+
 0. Create new application using Instante:
     1. install skeleton using composer:
 ```

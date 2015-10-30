@@ -13,7 +13,6 @@ $configDir = $rootDir . 'app/config';
 
 $paths = [ //additional paths
     'root' => $rootDir,
-    'libs' => $rootDir . '/libs',
     'log' => $rootDir . '/log',
 ];
 

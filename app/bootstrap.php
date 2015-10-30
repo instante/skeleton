@@ -9,7 +9,7 @@ $paths = [ //additional paths
     'log' => $rootDir . '/log',
     'www' => $rootDir . '/www',
     'temp' => $rootDir . '/temp',
-    'vendor' => $rootDir . '/libs/composer',
+    'vendor' => $rootDir . '/vendor',
     'config' => __DIR__ . '/config',
 ];
 

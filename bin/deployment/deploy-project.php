@@ -40,8 +40,8 @@
             exit;
         }
 
-        require_once __DIR__ . '/../libs/composer/nette/neon/src/neon.php';
-        require_once __DIR__ . '/../libs/composer/nette/utils/src/Utils/Json.php';
+        require_once __DIR__ . '/../vendor/nette/neon/src/neon.php';
+        require_once __DIR__ . '/../vendor/nette/utils/src/Utils/Json.php';
 
         $errors = 0;
         $messages = [];
@@ -163,7 +163,7 @@
 
 
         $instanteCodingStandardSrc = __DIR__ . '/../codingStandards/Instante';
-        $instanteCodingStandardInCodeSinffer = __DIR__ . '/../libs/composer/squizlabs/php_codesniffer/CodeSniffer/Standards/Instante';
+        $instanteCodingStandardInCodeSinffer = __DIR__ . '/../vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Instante';
         if (!is_link($instanteCodingStandardInCodeSinffer) && FALSE === @symlink($instanteCodingStandardSrc, $instanteCodingStandardInCodeSinffer)) {
             $errors++;
             print_error_message('Could not create symlink for Instante coding standards at [' . $instanteCodingStandardInCodeSinffer . ']');

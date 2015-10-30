@@ -56,7 +56,7 @@ fi
 
 echo "development" > app/config/environment
 cp app/config/local.neon.example app/config/local.neon
-./libs/composer/bin/tester ./tests -p php
+./vendor/bin/tester ./tests -p php
 EXITCODE=$?
 
 popd

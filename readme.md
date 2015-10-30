@@ -6,25 +6,30 @@
      |___|_| |_|___/\__\__,_|_| |_|\__\___|     \_____/
 
 
+
 [![Build Status](https://travis-ci.org/instante/skeleton.svg?branch=master)](https://travis-ci.org/instante/skeleton)
 [![Downloads this Month](https://img.shields.io/packagist/dm/instante/skeleton.svg)](https://packagist.org/packages/instante/skeleton)
 [![Latest stable](https://img.shields.io/packagist/v/instante/skeleton.svg)](https://packagist.org/packages/instante/skeleton)
 
+
 0. Create new application using Instante:
     1. install skeleton using composer:
-```
-composer create-project instante/skeleton .
-```
-    1. customize this readme.md to correspond to your new project (and remove this "Create new application" section)
-    2. use bin/init-project.php to initialize your new project or customize composer.json, frontend/package.json,
-       frontend/bower.json with your own project name, description, license etc.
-    3. initialize new git repository in project's folder:
-```
-git init
-bin/git/setup-git.{cmd|sh}
-git add .
-git commit -m "initial commit"
-```
+
+        ```
+        composer create-project instante/skeleton .
+        ```
+    
+    2. customize this readme.md to correspond to your new project (and remove this "Create new application" section)
+    3. use bin/init-project.php to initialize your new project or customize composer.json, frontend/package.json,
+     frontend/bower.json with your own project name, description, license etc.
+    4. initialize new git repository in project's folder:
+
+        ```
+        git init
+        bin/git/setup-git.{cmd|sh}
+        git add .
+        git commit -m "initial commit"
+        ```
 
 
 1. Deploy application:

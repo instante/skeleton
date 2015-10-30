@@ -2,7 +2,7 @@
     "name": "instante/skeleton",
     "description": "PROJECT NAME",
     "config": {
-        "vendor-dir": "./libs/composer"
+        "vendor-dir": "./vendor"
     },
     "require": {
         "php": ">=5.4.0",

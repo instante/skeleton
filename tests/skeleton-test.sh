@@ -61,7 +61,7 @@ if [ `cat app/config/environment` != "development" ]; then
     popd
     exit 5
 fi
->&2 echo "environment set to develop"
+>&2 echo "environment set to development"
 
 if [ ! -f app/config/local.neon ]; then
     >&2 echo "failed: local.neon not created"

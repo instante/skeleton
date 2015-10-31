@@ -134,7 +134,7 @@ class ProjectInitializer
         $packageJsonFilePath = $this->dir . '/frontend/package.json';
         $packageJson = file_get_contents($packageJsonFilePath);
         $packageJsonConfig = Json::decode($packageJson, Json::FORCE_ARRAY);
-        $packageJsonConfig['name'] = $this->projectName;
+        $packageJsonConfig['name'] = str_replace('/', '.', $this->projectName);
         $packageJsonConfig['description'] = $this->projectDescription;
         $packageJsonConfig['license'] = $this->projectLicense;
         $packageJsonConfig['version'] = $this->projectVersion;

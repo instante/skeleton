@@ -30,7 +30,7 @@ if [ `cat composer.json | grep "foo/bar" | wc -l` != 1 \
 fi
 >&2 echo "composer.json configured"
 
-if [ `cat frontend/package.json | grep "foo/bar" | wc -l` != 1 \
+if [ `cat frontend/package.json | grep "foo.bar" | wc -l` != 1 \
     -o `cat frontend/package.json | grep "descriptiontest" | wc -l` != 1 \
     -o `cat frontend/package.json | grep "licensetest" | wc -l` != 1 \
     -o `cat frontend/package.json | grep "vertest" | wc -l` != 1 \

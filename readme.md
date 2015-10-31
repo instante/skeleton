@@ -17,21 +17,17 @@ Create new application using Instante:
 
 1. install skeleton using composer:
 
-        ```
         composer create-project instante/skeleton .
-        ```
 
 2. customize this readme.md to correspond to your new project (and remove this "Create new application" section)
 3. use bin/deployment/init-project.php to initialize your new project or customize composer.json, frontend/package.json,
  frontend/bower.json with your own project name, description, license etc.
 4. initialize new git repository in project's folder:
 
-        ```
         git init
         bin/git/setup-git.{cmd|sh}
         git add .
         git commit -m "initial commit"
-        ```
 
 
 Deploy application:
@@ -49,9 +45,8 @@ Develop/compile frontend:
 
 install node.js, then use shell commands:
 
-        ```
         # setup
-        # install grunt CLI and bower globally to your node.js, if you haven't installed it before
+        # install grunt CLI and bower as global node.js module
         your-project/frontend$ npm install -g grunt-cli
         your-project/frontend$ npm install -g bower
         
@@ -60,7 +55,6 @@ install node.js, then use shell commands:
         
         # start watchdog
         your-project/frontend$ grunt
-        ```
 
 the watchdog starts to automatically compile less and js on any change.
 

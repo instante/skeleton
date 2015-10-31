@@ -64,4 +64,4 @@ Managing composer packages:
 To install new dependency - library:
 
 1. add the dependency to composer.json
-2. run "composer update --lock" - the --lock parameter preserves versions of other libraries.
+2. run `composer update --lock` - the --lock parameter preserves versions of other libraries.

@@ -1,0 +1,17 @@
+#
+# Local machine configuration. This file should NOT be versioned.
+#
+parameters:
+    database:
+        dbname: instante_sandbox
+        dbname_test: instante_test
+        user: root
+        password: root
+
+    routes:
+        secure: no
+
+nette:
+
+
+services:

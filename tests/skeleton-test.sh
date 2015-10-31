@@ -54,8 +54,30 @@ if [ `cat frontend/bower.json | grep "foo/bar" | wc -l` != 1 \
 fi
 >&2 echo "frontend/bower.json configured"
 
-echo "development" > app/config/environment
-cp app/config/local.neon.example app/config/local.neon
+echo -e "d\ny\ndbuser\ndbpass\ndbname\ndbtestname\n127.0.0.1\n" | php ./bin/deployment/deploy-project.php 1> /dev/null
+
+if [ `cat app/config/environment` != "development" ]; then
+    >&2 echo "failed: environment not set to development"
+    popd
+    exit 5
+fi
+>&2 echo "environment set to develop"
+
+if [ ! -f app/config/local.neon ]; then
+    >&2 echo "failed: local.neon not created"
+    popd
+    exit 6
+fi
+
+if ! cmp app/config/local.neon tests/skeleton/local.neon.expected >/dev/null 2>&1; then
+    >&2 echo "failed: local.neon does not match tests/skeleton/local.neon.expected"
+    popd
+    exit 7
+fi
+>&2 echo "local.neon configured properly"
+
+
+
 ./vendor/bin/tester ./tests -p php
 EXITCODE=$?
 

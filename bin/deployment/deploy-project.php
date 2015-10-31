@@ -31,8 +31,9 @@ if (php_sapi_name() === 'cli') {
 
 if (!empty($_POST['install'])) {
     $projectDeployer
-        ->setDatabaseCredentials($_POST['database_host'], $_POST['database_user'], $_POST['database_password'], $_POST['database_name'])
+        ->setDatabaseCredentials($_POST['database_host'], $_POST['database_user'], $_POST['database_password'], $_POST['database_name'], $_POST['database_test_name'])
         ->setEnvironment($_POST['environment'])
+        ->setSecureRoutes(isset($_POST['secure']))
         ->deploy();
 
     header('content-type:text/plain');
@@ -78,6 +79,12 @@ if (!empty($_POST['install'])) {
                     </select>
                 </div>
             </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="secure">Use secure routes (HTTPS):</label>
+                <div class="col-sm-8">
+                    <input type="checkbox" id="secure" name="secure" class="form-control" />
+                </div>
+            </div>
 
         </fieldset>
 
@@ -86,12 +93,17 @@ if (!empty($_POST['install'])) {
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="database_host">Host:</label>
 
-                <div class="col-sm-8"><input id="database_host" name="database_host" class="form-control" /></div>
+                <div class="col-sm-8"><input id="database_host" name="database_host" value="127.0.0.1" class="form-control" /></div>
             </div>
             <div class="form-group">
-                <label class="col-sm-4 control-label" for="database_name">Database name:</label>
+                <label class="col-sm-4 control-label" for="database_name">Database (schema) name:</label>
 
                 <div class="col-sm-8"><input id="database_name" name="database_name" class="form-control" /></div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="database_test_name">Database name for tests (optional):</label>
+
+                <div class="col-sm-8"><input id="database_test_name" name="database_test_name" class="form-control" /></div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="database_user">User:</label>

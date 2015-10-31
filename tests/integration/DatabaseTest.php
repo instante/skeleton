@@ -3,8 +3,10 @@
 namespace Instante\Tests;
 
 use Instante\Tests\Utils\DatabaseTester;
+use Kdyby\Doctrine\DBALException;
 use Kdyby\Doctrine\EntityManager;
 use Nette\DI\Container;
+use Tester\Environment;
 
 abstract class DatabaseTest extends ContainerTest
 {
@@ -29,7 +31,15 @@ abstract class DatabaseTest extends ContainerTest
     {
         parent::setUp();
         if (!$this->prepared) {
-            $this->databaseTest->prepareDatabaseTest();
+            try {
+                $this->databaseTest->prepareDatabaseTest();
+            } catch (DBALException $ex) {
+                if (preg_match('~unknown database|access denied|2002|no such file~i', $ex->getMessage())) {
+                    Environment::skip('No test SQL database available');
+                } else {
+                    throw $ex;
+                }
+            }
             $this->prepared = TRUE;
         } else {
             $this->databaseTest->clearDatabase();

@@ -2,6 +2,8 @@
 
 namespace App\Routing;
 
+use Nette\Application\IRouter;
+use Nette\Application\Responses\TextResponse;
 use Nette\Application\Routers\RouteList;
 use Nette\Application\Routers\Route;
 
@@ -9,7 +11,10 @@ class RouterFactory
 {
 
     /**
-     * @return \Nette\Application\IRouter
+     * @param bool $isConsoleMode
+     * @param bool $useSecureRoutes
+     * @param bool $isDebugMode
+     * @return IRouter
      */
     public function createRouter($isConsoleMode = FALSE, $useSecureRoutes = TRUE, $isDebugMode = FALSE)
     {
@@ -29,11 +34,10 @@ class RouterFactory
 
             //router for live tracy errors
             if ($isDebugMode) {
+                /** @noinspection PhpUnusedParameterInspection */
                 $router[] = new Route('[<? .*>/]log/<filename [a-z0-9-]+>.html', function ($presenter, $filename) {
                     $path = realpath(__DIR__ . '/../../log/' . $filename . '.html');
-                    if (file_exists($path)) {
-                        return new \Nette\Application\Responses\TextResponse(file_get_contents($path));
-                    }
+                    return new TextResponse(file_exists($path) ? file_get_contents($path) : 'exception file not found');
                 });
             }
 

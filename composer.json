@@ -2,16 +2,17 @@
     "name": "instante/skeleton",
     "description": "PROJECT NAME",
     "config": {
-        "vendor-dir": "./libs/composer"
+        "vendor-dir": "./vendor"
     },
     "require": {
         "php": ">=5.4.0",
         "nette/nette": "2.3.*",
         "instante/require-js": "~1.0",
-        "instante/doctrine": "~1.0"
+        "instante/doctrine": "~1.0",
+        "instante/bootstrap": "~1.0"
     },
     "require-dev": {
         "nette/tester": "@dev",
-        "squizlabs/php_codesniffer": "2.*"
+        "jakub-onderka/php-parallel-lint": "~0.6"
     }
 }

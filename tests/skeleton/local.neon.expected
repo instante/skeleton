@@ -1,0 +1,18 @@
+#
+# Local machine configuration.
+# SECURITY WARNING: it is CRITICAL that this file & directory
+# are NOT accessible directly via a web browser!
+# This file should also NEVER be versioned.
+#
+
+parameters:
+    database:
+        dbname: dbname
+        dbname_test: dbtestname
+        user: dbuser
+        password: dbpass
+        host: 127.0.0.1
+
+    routes:
+        secure: true
+

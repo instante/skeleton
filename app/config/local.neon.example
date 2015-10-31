@@ -10,8 +10,3 @@ parameters:
 
     routes:
         secure: no
-
-nette:
-
-
-services:

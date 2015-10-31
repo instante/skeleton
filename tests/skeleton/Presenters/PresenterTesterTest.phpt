@@ -5,14 +5,17 @@ use Latte\Engine;
 use Latte\Loaders\StringLoader;
 use Nette;
 use Nette\Application\IResponse;
+use Nette\Application\UI\ITemplate;
 use Nette\Bridges\ApplicationLatte\Template;
 use Nette\Application\UI\Presenter;
 use Nette\DI\Container;
 use Nette\Http\FileUpload;
+use Nette\Http\IRequest;
+use Nette\Http\IResponse as IHttpResponse;
 use Tester\Assert;
 use Tester\TestCase;
 
-$context = require __DIR__ . '/../bootstrap.php';
+$context = require __DIR__ . '/../../integration/bootstrap.php';
 
 class PresenterTesterTest extends TestCase
 {
@@ -30,9 +33,9 @@ class PresenterTesterTest extends TestCase
 
     public function testConstructor()
     {
-        $tester = new PresenterTester('Instante\Tests\Presenters\TestPresenter', ':Test', $this->context, '/tmp/some/directory');
-        $tester = new PresenterTester(new TestPresenter, ':Test', $this->context);
-        $tester = new PresenterTester(function() { return new TestPresenter; }, ':Test', $this->context);
+        new PresenterTester('Instante\Tests\Presenters\TestPresenter', ':Test', $this->context, '/tmp/some/directory');
+        new PresenterTester(new TestPresenter, ':Test', $this->context);
+        new PresenterTester(function() { return new TestPresenter; }, ':Test', $this->context);
         Assert::true(TRUE, 'Passing this test indicates that PresenterTester constructor accepts all desired argument types.');
     }
 
@@ -202,11 +205,7 @@ class ObjectResponse implements IResponse
     public function __construct($object) { $this->object = $object; }
 
 
-    /**
-     * Sends response to output.
-     * @return void
-     */
-    function send(Nette\Http\IRequest $httpRequest, Nette\Http\IResponse $httpResponse)
+    function send(IRequest $httpRequest, IHttpResponse $httpResponse)
     {
 
     }

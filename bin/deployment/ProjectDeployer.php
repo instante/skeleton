@@ -53,6 +53,11 @@ class ProjectDeployer
         }
         $this->configureLocalNeon();
         $this->configureEnvironment();
+        $out = `php {$this->dir}/www/index.php orm:generate-proxies`;
+        $out .= "\n\n" . `php {$this->dir}/www/index.php migrations:migrate`;
+        if (php_sapi_name() === 'cli') {
+            echo $out;
+        }
     }
 
     /**

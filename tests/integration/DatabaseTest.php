@@ -34,7 +34,7 @@ abstract class DatabaseTest extends ContainerTest
             try {
                 $this->databaseTest->prepareDatabaseTest();
             } catch (DBALException $ex) {
-                if (preg_match('~unknown database|2002|no such file~i', $ex->getMessage())) {
+                if (preg_match('~unknown database|access denied|2002|no such file~i', $ex->getMessage())) {
                     Environment::skip('No test SQL database available');
                 } else {
                     throw $ex;

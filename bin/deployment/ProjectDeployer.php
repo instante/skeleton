@@ -55,6 +55,11 @@ class ProjectDeployer
         $this->configureEnvironment();
         $out = `php {$this->dir}/www/index.php orm:generate-proxies`;
         $out .= "\n\n" . `php {$this->dir}/www/index.php migrations:migrate`;
+        if ($this->isWindows()) {
+            $out .= "\n\n" . `{$this->dir}/bin/git/setup-git.cmd`;
+        } else {
+            $out .= "\n\n" . `{$this->dir}/bin/git/setup-git.sh`;
+        }
         if (php_sapi_name() === 'cli') {
             echo $out;
         }

@@ -1,7 +1,3 @@
-/**
- * @author Jan Svatoš (jan.svatos@proofreason.com)
- */
-
 define(['instante/events', 'chai', 'sinon', 'squire'], function (Events, Chai, Sinon, SquireFactory)
 {
     'use strict';
@@ -20,7 +16,7 @@ define(['instante/events', 'chai', 'sinon', 'squire'], function (Events, Chai, S
         {
             it('should return an object', function (done)
             {
-                Events.should.exist;
+                Events.should.exist();
                 done();
             });
 
@@ -89,8 +85,8 @@ define(['instante/events', 'chai', 'sinon', 'squire'], function (Events, Chai, S
                     Events.addListener('event', eventListener);
                     Events.removeListener('event', eventListener);
                     Events.trigger('event', 'data');
-                    Chai.expect(eventListener.calledOnce).to.be.false;
-                    Chai.expect(eventListener.neverCalledWith('data')).to.be.ok;
+                    Chai.expect(eventListener.calledOnce).to.be.false();
+                    Chai.expect(eventListener.neverCalledWith('data')).to.be.ok();
 
                     done();
                 });
@@ -111,8 +107,8 @@ define(['instante/events', 'chai', 'sinon', 'squire'], function (Events, Chai, S
                     Events.removeListener('event', eventListenerRemoved);
                     Events.trigger('event', 'data');
 
-                    Chai.expect(eventListenerRemoved.called).to.be.false;
-                    Chai.expect(eventListenerActive.calledOnce).to.be.true;
+                    Chai.expect(eventListenerRemoved.called).to.be.false();
+                    Chai.expect(eventListenerActive.calledOnce).to.be.true();
 
                     done();
                 });
@@ -138,11 +134,11 @@ define(['instante/events', 'chai', 'sinon', 'squire'], function (Events, Chai, S
                     Events.trigger('eventA', 'dataA');
                     Events.trigger('eventB', 'dataB');
 
-                    Chai.expect(eventAListener.called).to.be.false;
-                    Chai.expect(eventABListener.called).to.be.ok;
-                    Chai.expect(eventABListener.calledOnce).to.be.ok;
-                    Chai.expect(eventABListener.calledWith('dataB')).to.be.ok;
-                    Chai.expect(eventBListener.called).to.be.ok;
+                    Chai.expect(eventAListener.called).to.be.false();
+                    Chai.expect(eventABListener.called).to.be.ok();
+                    Chai.expect(eventABListener.calledOnce).to.be.ok();
+                    Chai.expect(eventABListener.calledWith('dataB')).to.be.ok();
+                    Chai.expect(eventBListener.called).to.be.ok();
 
                     done();
                 });

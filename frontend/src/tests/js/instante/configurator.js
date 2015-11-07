@@ -1,7 +1,3 @@
-/**
- * @author Jan Svatoš (jan.svatos@proofreason.com)
- */
-
 define(['instante/configurator', 'squire', 'chai'], function (Configurator, SquireFactory, Chai)
 {
     'use strict';

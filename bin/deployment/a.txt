@@ -1,7 +1,0 @@
-d
-y
-dbuser
-dbpass
-dbname
-dbtestname
-

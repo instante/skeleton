@@ -1,6 +1,9 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
 #
 # post-merge hook to run after "dummize.sh" merge driver
+
+pushd "$(dirname "$0")/../.."
 
 if [[ -f .dummized ]]; then
     # find files that should be recompiled
@@ -17,3 +20,5 @@ if [[ -f .dummized ]]; then
     git commit --amend --no-edit
     rm .dummized
 fi
+
+popd

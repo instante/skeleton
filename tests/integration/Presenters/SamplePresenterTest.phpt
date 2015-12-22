@@ -2,34 +2,18 @@
 namespace Instante\Tests\Presenters;
 
 
-use Nette\DI\Container;
+use Nette\Application\BadRequestException;
 use Tester\Assert;
-use Tester\TestCase;
 
 $context = require __DIR__ . '/../bootstrap.php';
 
-class SamplePresenterTest extends TestCase
-{
-    /** @var Container */
-    private $context;
+$tester = new PresenterTester('App\Presenters\HomepagePresenter', ':Homepage', $context);
+$result = $tester->runPresenter();
+Assert::match('~^<!DOCTYPE~', $result->getResponseBody());
 
-    /**
-     * SamplePresenterTest constructor.
-     * @param Container $context
-     */
-    public function __construct(Container $context)
-    {
-        $this->context = $context;
-    }
+$tester = new PresenterTester('App\Presenters\HomepagePresenter', ':Homepage', $context);
+$tester->addQuery(['action' => 'nonExistentPage']);
+Assert::exception(function () use ($tester) {
+    $tester->runPresenter();
+}, BadRequestException::class);
 
-    public function testHomepage()
-    {
-        $tester = new PresenterTester('App\Presenters\HomepagePresenter', ':Homepage', $this->context);
-        $result = $tester->runPresenter();
-
-        Assert::match('~^<!DOCTYPE~', $result->getResponseBody());
-
-    }
-}
-
-(new SamplePresenterTest($context))->run();

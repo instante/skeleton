@@ -1,7 +1,3 @@
-/**
- * @author Jan Svatoš (jan.svatos@proofreason.com)
- */
-
 define('instante/configurator', [], function ()
 {
 

@@ -44,7 +44,7 @@ module.exports = function (grunt)
                     'package.json'
                 ],
                 tasks: ['default', 'watch']
-            },
+            }
         },
         requirejs: {
             front: {
@@ -56,7 +56,7 @@ module.exports = function (grunt)
                     optimize: "uglify2",
                     generateSourceMaps: true,
                     preserveLicenseComments: false,
-                    include: [].concat(jscripts.common, jscripts.front),
+                    include: [].concat(jscripts.common, jscripts.front)
                 }
             }
         },
@@ -81,7 +81,7 @@ module.exports = function (grunt)
                         '<%= path.src %>less/main.less'
                     ]
                 }
-            },
+            }
         },
         csssplit: {
             dist: {

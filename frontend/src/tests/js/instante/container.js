@@ -1,7 +1,3 @@
-/**
- * @author Jan Svatoš (jan.svatos@proofreason.com)
- */
-
 define(['instante/container', 'squire', 'sinon', 'chai'], function (Container, SquireFactory, Sinon, Chai)
 {
     'use strict';

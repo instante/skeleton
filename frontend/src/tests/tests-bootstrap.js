@@ -1,7 +1,3 @@
-/**
- * @author Jan Svatoš (jan.svatos@proofreason.com)
- */
-
 require.config({
     //this is relative to Gruntfile.js !!
     baseUrl: '/src/js',

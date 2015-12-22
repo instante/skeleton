@@ -10,7 +10,7 @@ parameters:
         dbname: instante
         dbname_test: instante_test
         user: travis
-        password: 
+        password: ""
         host: 127.0.0.1
 
     routes:

@@ -53,6 +53,9 @@ install node.js, then use shell commands:
         # install local grunt packages
         your-project/frontend$ npm install
         
+        # install local bower components
+        your-project/frontend$ bower install
+        
         # start watchdog
         your-project/frontend$ grunt
 

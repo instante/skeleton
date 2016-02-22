@@ -25,7 +25,7 @@ case "$1" in
     ;;
 esac
 
-./vendor/bin/tester ./tests/$1 -p php -c ./tests
+./vendor/bin/tester "./$TESTS_DIR" -p php -c ./tests
 EXITCODE=$?
 
 popd

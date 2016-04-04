@@ -16,6 +16,11 @@ doctrine:
     user: %database.user%
     password: %database.password%
     charset: %database.charset%
+# kdyby/doctrine can handle entity metadata mapping inside appDir by default.
+# if you want to use custom metadata mapping,  uncomment following lines
+# and/or add your own mapping
+#    metadata:
+#        App: %appDir%
 
 migrations:
     directory: "%paths.root%/migrations"

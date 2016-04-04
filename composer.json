@@ -8,7 +8,7 @@
         "php": ">=5.5.0",
         "nette/nette": "2.3.*",
         "instante/require-js": "~1.0",
-        "instante/doctrine": "~1.1.1",
+        "instante/doctrine": "~1.1",
         "instante/bootstrap": "~1.0"
     },
     "require-dev": {

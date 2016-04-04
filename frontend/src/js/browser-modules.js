@@ -1,7 +1,7 @@
 define('window', [], function() { return window; });
 define('document', [], function() { return document; });
-define('$window', [], function() { return $(window); });
-define('$document', [], function() { return $(document); });
+define('$window', ['jquery'], function($) { return $(window); });
+define('$document', ['jquery'], function($) { return $(document); });
 define('Date', [], function() { return Date; });
 define('Math', [], function() { return Math; });
 define('Object', [], function() { return Object; });

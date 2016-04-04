@@ -7,10 +7,10 @@
 
 parameters:
     database:
-        dbname: dbname
-        dbname_test: dbtestname
-        user: dbuser
-        password: dbpass
+        dbname: instante
+        dbname_test: instante_test
+        user: travis
+        password: ""
         host: 127.0.0.1
 
     routes:

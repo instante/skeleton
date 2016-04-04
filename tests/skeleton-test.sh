@@ -54,7 +54,7 @@ if [ `cat frontend/bower.json | grep "foo/bar" | wc -l` != 1 \
 fi
 >&2 echo "frontend/bower.json configured"
 
-echo -e "d\ny\ndbuser\ndbpass\ndbname\ndbtestname\n127.0.0.1\n" | php ./bin/deployment/deploy-project.php 1> /dev/null
+echo -e "d\ny\ntravis\n\ninstante\ninstante_test\n127.0.0.1\n" | php ./bin/deployment/deploy-project.php 1> /dev/null
 
 if [ `cat app/config/environment` != "development" ]; then
     >&2 echo "failed: environment not set to development"

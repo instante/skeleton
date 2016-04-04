@@ -27,7 +27,7 @@ module.exports = function (grunt)
         watch: {
             scripts: {
                 files: ['<%= jscripts %>'],
-                tasks: ['requirejs', 'requirejs-dependencies']
+                tasks: ['newer:requirejs', 'requirejs-dependencies']
             },
             styles: {
                 files: [
@@ -131,9 +131,10 @@ module.exports = function (grunt)
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks('grunt-mocha-require-phantom');
+    grunt.loadNpmTasks('grunt-newer');
 
     grunt.registerTask('default', ['dev']);
-    grunt.registerTask('dist', ['requirejs', 'requirejs-dependencies', 'less:build']);
+    grunt.registerTask('dist', ['newer:requirejs', 'requirejs-dependencies', 'less:build']);
     grunt.registerTask('dev', ['dist', 'watch']);
 
     grunt.registerTask('requirejs-dependencies', 'Generates dependency tree of requirejs modules for PHP', function ()

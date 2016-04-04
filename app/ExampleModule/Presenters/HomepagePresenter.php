@@ -11,7 +11,7 @@ class HomepagePresenter extends BasePresenter
     public function createComponentDemoForm()
     {
         $form = new Form;
-        if (class_exists('BootstrapRenderer')) {
+        if (class_exists('Instante\Bootstrap3Renderer\BootstrapRenderer')) {
             $form->setRenderer(new BootstrapRenderer);
         }
 

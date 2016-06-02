@@ -6,7 +6,7 @@ branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 
 git checkout develop
 git pull
-git checkout "$branch"
-git rebase develop
+git merge --no-ff --no-edit "$branch"
 
 popd >/dev/null
+

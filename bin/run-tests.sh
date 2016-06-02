@@ -25,6 +25,8 @@ case "$1" in
     ;;
 esac
 
+rm -rf ./tests/temp/*
+mkdir -p ./tests/temp/sessions
 ./vendor/bin/tester "./$TESTS_DIR" -p php -c ./tests
 EXITCODE=$?
 

@@ -4,6 +4,11 @@
     "config": {
         "vendor-dir": "./vendor"
     },
+    "license": [
+        "BSD-3-Clause",
+        "GPL-2.0",
+        "GPL-3.0"
+    ],
     "require": {
         "php": ">=5.5.0",
         "nette/nette": "2.3.*",

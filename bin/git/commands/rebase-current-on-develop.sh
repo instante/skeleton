@@ -2,7 +2,7 @@
 
 pushd "$(dirname "$0")/../../.." >/dev/null
 
-branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+branch=$(git rev-parse --abbrev-ref HEAD)
 
 git checkout develop
 git pull

@@ -18,6 +18,7 @@
     },
     "require-dev": {
         "nette/tester": "@dev",
-        "jakub-onderka/php-parallel-lint": "~0.6"
+        "jakub-onderka/php-parallel-lint": "~0.6",
+        "instante/php-test-suite": "@dev"
     }
 }

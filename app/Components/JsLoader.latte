@@ -1,0 +1,11 @@
+<script type="application/json" id="instanteStartupJS">{$jsContainer->getModules()}</script>
+{if $source}
+    <script data-main="{$basePath}/../frontend/src/js/bootstrap.js"
+            src="{$basePath}/../frontend/bower_components/requirejs/require.js"></script>
+    <script src="{$basePath}/../frontend/src/js/require-config.js"></script>
+    <script>
+        window.__basePath = {$basePath};
+    </script>
+{else}
+    <script src="{$basePath}/js/{$module}.min.js"></script>
+{/if}

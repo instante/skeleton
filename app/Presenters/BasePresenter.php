@@ -2,8 +2,8 @@
 
 namespace App\Presenters;
 
+use App\Components\JsLoaderFactory;
 use Kdyby\Doctrine\EntityManager;
-use Instante\RequireJS\JSModuleContainer;
 use Nette\Application\UI\Presenter;
 
 abstract class BasePresenter extends Presenter
@@ -12,8 +12,8 @@ abstract class BasePresenter extends Presenter
     /** @var EntityManager @inject */
     public $em;
 
-    /** @var  JSModuleContainer @inject */
-    public $jsModuleContainer;
+    /** @var JsLoaderFactory @inject */
+    public $jsLoaderFactory;
 
     /**
      * @param string $module
@@ -48,13 +48,8 @@ abstract class BasePresenter extends Presenter
         return $this->flashMessage($message, 'danger');
     }
 
-    /**
-     * Common render method.
-     * @return void
-     */
-    protected function beforeRender()
+    protected function createComponentJsLoader()
     {
-        parent::beforeRender();
-        $this->template->jsContainer = $this->jsModuleContainer;
+        return $this->jsLoaderFactory->create();
     }
 }

@@ -14,7 +14,8 @@
         "nette/nette": "2.3.*",
         "instante/require-js": "~1.0",
         "instante/doctrine": "~1.1",
-        "instante/bootstrap": "~1.0"
+        "instante/bootstrap": "~1.0",
+        "instante/ui": "~1.0"
     },
     "require-dev": {
         "nette/tester": "@dev",

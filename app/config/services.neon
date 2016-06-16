@@ -6,3 +6,4 @@
 
 services:
     - Instante\RequireJS\JSModuleContainer(%paths.frontend%/RequireJSDependencies.json)
+    - App\Components\JsLoaderFactory(%useSourceJavaScripts%)

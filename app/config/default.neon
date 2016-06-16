@@ -12,6 +12,7 @@ includes:
     - extensions.neon
 parameters:
     webmasterEmail: john.doe@example.com
+    useSourceJavaScripts: no
     paths:
         frontend: %paths.root%/frontend
 

@@ -25,7 +25,7 @@ Create new application using Instante:
 4. initialize new git repository in project's folder:
 
         git init
-        bin/git/setup-git.{cmd|sh}
+        bin/git/setup-git.sh
         git add .
         git commit -m "initial commit"
 

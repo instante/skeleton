@@ -84,13 +84,18 @@ class ProjectDeployer
     }
 
     /**
-     * @param string$environment
+     * @param string $environment
      * @return $this
      * @throws InvalidArgumentException
      */
     public function setEnvironment($environment)
     {
-        if (!in_array($environment, $envs = [Bootstrapper::ENV_DEVELOPMENT, Bootstrapper::ENV_STAGE, Bootstrapper::ENV_PRODUCTION])) {
+        if (!in_array($environment, $envs = [
+            Bootstrapper::ENV_DEVELOPMENT,
+            Bootstrapper::ENV_STAGE,
+            Bootstrapper::ENV_PRODUCTION,
+        ])
+        ) {
             throw new InvalidArgumentException('Environment must be one of ' . implode(',', $envs));
         }
         $this->environment = $environment;
@@ -109,10 +114,10 @@ class ProjectDeployer
 
     public function deployFromConsole()
     {
-        $stdin = fopen("php://stdin","r");
+        $stdin = fopen("php://stdin", "r");
 
         echo "\n\n\nSelect local environment ( [d]evelopment | [s]tage | [p]roduction ):\n";
-        while (!in_array($c = strtolower(trim(fgets($stdin))[0]), ['d','s','p'])) {
+        while (!in_array($c = strtolower(trim(fgets($stdin))[0]), ['d', 's', 'p'])) {
             echo "Type D, S or P and press ENTER\n";
         }
 
@@ -129,19 +134,19 @@ class ProjectDeployer
         }
 
         echo "Use secure routes (HTTPS)? ( [y]es | [n]o ):\n";
-        while (!in_array($c = strtolower(trim(fgets($stdin))[0]), ['y','n'])) {
+        while (!in_array($c = strtolower(trim(fgets($stdin))[0]), ['y', 'n'])) {
             echo "Type Y or N and press ENTER\n";
         }
 
         $this->secureRoutes = $c === 'y';
 
         echo "Local database setup\n"
-           . "--------------------\n"
-           . "User name > ";
+            . "--------------------\n"
+            . "User name > ";
         $this->dbUser = isset($str) ? $str : trim(fgets($stdin));
         if ($this->isWindows()) {
             echo "WARNING: Password input is not masked in Windows command prompt\n"
-               . "Password > ";
+                . "Password > ";
         } else {
             echo "Password > \033[30;40m";
         }
@@ -180,7 +185,8 @@ class ProjectDeployer
         $config['parameters']['database']['dbname_test'] = $this->dbTestName;
         $config['parameters']['routes']['secure'] = $this->secureRoutes;
         $localNeonPath = $this->dir . '/app/config/local.neon';
-        $localNeonHead = <<<EOT
+        $localNeonHead
+            = <<<EOT
 #
 # Local machine configuration.
 # SECURITY WARNING: it is CRITICAL that this file & directory
@@ -191,7 +197,9 @@ class ProjectDeployer
 
 EOT;
 
-        if (file_put_contents($localNeonPath, $localNeonHead . str_replace("\t", '    ', Neon::encode($config, Neon::BLOCK))) === FALSE) {
+        if (file_put_contents($localNeonPath, $localNeonHead
+                . str_replace("\t", '    ', Neon::encode($config, Neon::BLOCK))) === FALSE
+        ) {
             $this->errors[] = 'Local config could not be written at [' . $localNeonPath . ']';
         }
     }
@@ -204,7 +212,8 @@ EOT;
         }
     }
 
-    private function isWindows() {
+    private function isWindows()
+    {
         return substr(strtoupper(PHP_OS), 0, 3) === 'WIN';
     }
 }

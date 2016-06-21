@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# post-merge hook to run after "dummize.sh" merge driver
-
-bin/git/recompile.sh

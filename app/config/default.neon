@@ -19,22 +19,20 @@ php:
     date.timezone: Europe/Prague
     # zlib.output_compression: yes
 
+application:
+    errorPresenter: Error
+    catchExceptions: yes
+    mapping:
+        *: App\*Module\Presenters\*Presenter
 
-nette:
-    application:
-        errorPresenter: Error
-        catchExceptions: yes
-        mapping:
-            *: App\*Module\Presenters\*Presenter
+tracy:
+    email: %webmasterEmail%
+    strictMode: TRUE
 
-    debugger:
-        email: %webmasterEmail%
-        strictMode: yes
-
-    session:
-        autoStart: smart
-        expiration: 14 days
-        savePath: "%tempDir%/sessions"
+session:
+    autoStart: smart
+    expiration: 14 days
+    savePath: "%tempDir%/sessions"
 
 latte:
     xhtml: no

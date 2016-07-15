@@ -154,7 +154,6 @@ class ProjectInitializer
         $composerJsonConfig['name'] = $this->projectName;
         $composerJsonConfig['description'] = $this->projectDescription;
         $composerJsonConfig['license'] = $this->projectLicense;
-        $composerJsonConfig['version'] = $this->projectVersion;
         $composerJsonConfig['authors'] = [
             [
                 'name' => $this->authorName,

@@ -20,11 +20,10 @@ fi
 if [ `cat composer.json | grep "foo/bar" | wc -l` != 1 \
     -o `cat composer.json | grep "descriptiontest" | wc -l` != 1 \
     -o `cat composer.json | grep "licensetest" | wc -l` != 1 \
-    -o `cat composer.json | grep "vertest" | wc -l` != 1 \
     -o `cat composer.json | grep "authorname" | wc -l` != 1 \
     -o `cat composer.json | grep "authormail" | wc -l` != 1 \
     ]; then
-    >&2 echo "failed: composer.json does not contain one of package name, description, license, author name, author e-mail or version"
+    >&2 echo "failed: composer.json does not contain one of package name, description, license, author name or author e-mail"
     popd
     exit 3
 fi

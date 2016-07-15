@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 pushd "$(dirname "$0")/.."
 
+rm -rf temp/deploytest
+git checkout-index --prefix=temp/deploytest/ -a
+cd temp/deploytest
+composer install --no-interaction
+
 echo -e "test@doe.com\nfoo/bar\ndescriptiontest\nlicensetest\nvertest\nauthorname\nauthormail\n" | php ./bin/deployment/init-project.php 1> /dev/null
 
 if [ $? -ne 0 ]; then
@@ -79,6 +84,8 @@ fi
 
 ./vendor/bin/tester ./tests -p php
 EXITCODE=$?
+
+rm -rf .
 
 popd
 

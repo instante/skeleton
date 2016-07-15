@@ -5,6 +5,13 @@ rm -rf temp/deploytest
 git checkout-index --prefix=temp/deploytest/ -a
 cd temp/deploytest
 composer install --no-interaction
+./vendor/bin/parallel-lint -e php,phpt --exclude vendor .
+
+if [ $? != 0 ]; then
+    >&2 echo "failed: lint failed"
+    popd
+    exit 8
+fi
 
 echo -e "test@doe.com\nfoo/bar\ndescriptiontest\nlicensetest\nvertest\nauthorname\nauthormail\n" | php ./bin/deployment/init-project.php 1> /dev/null
 
@@ -85,7 +92,8 @@ fi
 ./vendor/bin/tester ./tests -p php
 EXITCODE=$?
 
-rm -rf .
+cd ..
+rm -rf deploytest
 
 popd
 

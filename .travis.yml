@@ -10,7 +10,6 @@ services:
 
 before_script:
   - composer self-update
-  - ./vendor/bin/parallel-lint -e php,phpt --exclude vendor .
   - mysql -e 'create database instante collate utf8_general_ci; create database instante_test collate utf8_general_ci;'
 
 script: ./tests/skeleton-test.sh

@@ -97,8 +97,7 @@ class ProjectInitializer
     private function configureWebmasterEmail()
     {
         $defaultNeonPath = $this->dir . '/app/config/default.neon';
-        if (!file_exists($defaultNeonPath))
-        {
+        if (!file_exists($defaultNeonPath)) {
             $this->errors[] = 'Webmaster e-mail not written into default.neon - no app/config/default.neon file found.';
             return;
         }
@@ -106,9 +105,9 @@ class ProjectInitializer
         $count = 0;
         file_put_contents($defaultNeonPath, preg_replace('~webmasterEmail: .*~',
             'webmasterEmail: ' . Neon::encode($this->webmasterEmail), $defaultNeon, -1, $count));
-        if ($count === 0)
-        {
-            $this->errors[] = 'Webmaster e-mail not written into default.neon - string "webmasterEmail: " to be replaced not found.';
+        if ($count === 0) {
+            $this->errors[]
+                = 'Webmaster e-mail not written into default.neon - string "webmasterEmail: " to be replaced not found.';
         }
     }
 
@@ -130,7 +129,8 @@ class ProjectInitializer
         }
     }
 
-    private function updatePackageJson() {
+    private function updatePackageJson()
+    {
         $packageJsonFilePath = $this->dir . '/frontend/package.json';
         $packageJson = file_get_contents($packageJsonFilePath);
         $packageJsonConfig = Json::decode($packageJson, Json::FORCE_ARRAY);
@@ -162,14 +162,14 @@ class ProjectInitializer
             ],
         ];
         $composerJson = Json::encode($composerJsonConfig, Json::PRETTY);
-        if (FALSE === file_put_contents($composerJsonFilePath, $composerJson)) {
+        if (file_put_contents($composerJsonFilePath, $composerJson) === FALSE) {
             $this->errors[] = 'Composer.json config could not be written at [' . $composerJsonFilePath . ']';
         }
     }
 
     public function initializeFromConsole()
     {
-        $stdin = fopen("php://stdin","r");
+        $stdin = fopen("php://stdin", "r");
 
         echo "Webmaster's e-mail > ";
         $this->webmasterEmail = trim(fgets($stdin));

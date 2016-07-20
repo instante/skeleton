@@ -2,7 +2,7 @@
 
 namespace App\Presenters;
 
-use App\Components\JsLoaderFactory;
+use Instante\RequireJS\Components\JsLoaderFactory;
 use Kdyby\Doctrine\EntityManager;
 use Nette\Application\UI\Presenter;
 

@@ -5,4 +5,4 @@
 #
 
 services:
-    - Instante\RequireJS\JSModuleContainer(%paths.frontend%/RequireJSDependencies.json)
+    - Instante\RequireJS\JsModuleContainer(%paths.frontend%/RequireJSDependencies.json)

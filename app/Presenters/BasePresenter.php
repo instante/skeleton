@@ -3,7 +3,7 @@
 namespace App\Presenters;
 
 use Kdyby\Doctrine\EntityManager;
-use Instante\RequireJS\JSModuleContainer;
+use Instante\RequireJS\JsModuleContainer;
 use Nette\Application\UI\Presenter;
 
 abstract class BasePresenter extends Presenter
@@ -12,7 +12,7 @@ abstract class BasePresenter extends Presenter
     /** @var EntityManager @inject */
     public $em;
 
-    /** @var  JSModuleContainer @inject */
+    /** @var  JsModuleContainer @inject */
     public $jsModuleContainer;
 
     /**

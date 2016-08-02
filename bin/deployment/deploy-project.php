@@ -63,7 +63,8 @@ if (!empty($_POST['install'])) {
 
     <h1 class="text-center">Instante installation</h1>
 
-    <p>Fill these values to instantly initialize your local copy! This script will configures local environment, database credentials etc. for you.</p>
+    <p>Fill these values to instantly initialize your local copy! This script will configures local environment,
+        database credentials etc. for you.</p>
 
     <form method="POST" class="form-horizontal">
 
@@ -82,7 +83,7 @@ if (!empty($_POST['install'])) {
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="secure">Use secure routes (HTTPS):</label>
                 <div class="col-sm-8">
-                    <input type="checkbox" id="secure" name="secure" class="form-control" />
+                    <input type="checkbox" id="secure" name="secure" class="form-control"/>
                 </div>
             </div>
 
@@ -93,33 +94,45 @@ if (!empty($_POST['install'])) {
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="database_host">Host:</label>
 
-                <div class="col-sm-8"><input id="database_host" name="database_host" value="127.0.0.1" class="form-control" /></div>
+                <div class="col-sm-8">
+                    <input id="database_host" name="database_host" value="127.0.0.1" class="form-control"/>
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="database_name">Database (schema) name:</label>
 
-                <div class="col-sm-8"><input id="database_name" name="database_name" class="form-control" /></div>
+                <div class="col-sm-8">
+                    <input id="database_name" name="database_name" class="form-control"/>
+                </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-4 control-label" for="database_test_name">Database name for tests (optional):</label>
+                <label class="col-sm-4 control-label" for="database_test_name">
+                    Database name for tests (optional):
+                </label>
 
-                <div class="col-sm-8"><input id="database_test_name" name="database_test_name" class="form-control" /></div>
+                <div class="col-sm-8">
+                    <input id="database_test_name" name="database_test_name" class="form-control"/>
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="database_user">User:</label>
 
-                <div class="col-sm-8"><input id="database_user" name="database_user" class="form-control" /></div>
+                <div class="col-sm-8">
+                    <input id="database_user" name="database_user" class="form-control"/>
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="database_password">Password:</label>
 
-                <div class="col-sm-8"><input id="database_password" type="password" name="database_password" class="form-control" /></div>
+                <div class="col-sm-8">
+                    <input id="database_password" type="password" name="database_password" class="form-control"/>
+                </div>
             </div>
         </fieldset>
 
         <div class="form-group">
             <div class="col-sm-12">
-                <input name="install" type="submit" value="Install" class="form-control btn btn-success" />
+                <input name="install" type="submit" value="Install" class="form-control btn btn-success"/>
             </div>
         </div>
 

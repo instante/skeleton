@@ -10,8 +10,10 @@ $autoloaderPath = $baseDir . '/vendor/autoload.php';
 
 if (!file_exists($autoloaderPath)) {
     header('content-type:text/plain');
-    die('Composer was not installed, you need to run "composer install" first');
+    die("\nComposer was not installed, you need to run \"composer install\" first\n\n");
 }
+
+
 
 require_once $autoloaderPath;
 require_once __DIR__ . '/ProjectDeployer.php';
@@ -19,13 +21,13 @@ require_once __DIR__ . '/ProjectDeployer.php';
 $projectDeployer = new ProjectDeployer($baseDir);
 if ($projectDeployer->checkProjectInitialized()) {
     header('location:init-project.php');
-    die("Project is not initialized yet.\n\n"
-        . "Please run init-project.php first.\n");
+    die("\nProject is not initialized yet.\n"
+        . "Please run init-project.php first.\n\n");
 }
 if ($projectDeployer->checkProjectConfigured()) {
     header('content-type:text/plain');
-    die("Project is deployed.\n\nRe-deploy disabled for security reasons.\n"
-        . 'Delete the app/config/environment file to re-initialize.');
+    die("\nProject is deployed.\n\nRe-deploy disabled for security reasons.\n"
+        . "Delete the app/config/environment file to re-initialize.\n\n");
 }
 
 if (php_sapi_name() === 'cli') {

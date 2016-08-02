@@ -66,27 +66,30 @@ if (!empty($_POST['install'])) {
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="project_name">Name:</label>
 
-                <div class="col-sm-8"><input id="project_name" name="project_name" class="form-control" /></div>
+                <div class="col-sm-8"><input id="project_name" name="project_name" class="form-control"/></div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="project_description">Description:</label>
 
-                <div class="col-sm-8"><input id="project_description" name="project_description" class="form-control" /></div>
+                <div class="col-sm-8"><input id="project_description" name="project_description" class="form-control"/>
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="project_license">License:</label>
 
-                <div class="col-sm-8"><input id="project_license" name="project_license" class="form-control" value="proprietary" /></div>
+                <div class="col-sm-8"><input id="project_license" name="project_license" class="form-control"
+                                             value="proprietary"/></div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="project_version">Version:</label>
 
-                <div class="col-sm-8"><input id="project_version" name="project_version" class="form-control" value="0.1.0" /></div>
+                <div class="col-sm-8"><input id="project_version" name="project_version" class="form-control"
+                                             value="0.1.0"/></div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="webmaster_email">Webmaster email:</label>
 
-                <div class="col-sm-8"><input id="webmaster_email" name="webmaster_email" class="form-control" /></div>
+                <div class="col-sm-8"><input id="webmaster_email" name="webmaster_email" class="form-control"/></div>
             </div>
         </fieldset>
 
@@ -95,12 +98,12 @@ if (!empty($_POST['install'])) {
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="author_name">Name:</label>
 
-                <div class="col-sm-8"><input id="author_name" name="author_name" class="form-control" /></div>
+                <div class="col-sm-8"><input id="author_name" name="author_name" class="form-control"/></div>
             </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label" for="author_email">Email:</label>
 
-                <div class="col-sm-8"><input id="author_email" name="author_email" class="form-control" /></div>
+                <div class="col-sm-8"><input id="author_email" name="author_email" class="form-control"/></div>
             </div>
         </fieldset>
 

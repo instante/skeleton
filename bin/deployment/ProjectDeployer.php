@@ -40,6 +40,12 @@ class ProjectDeployer
         return file_exists($this->dir . '/app/config/environment');
     }
 
+    public function checkProjectInitialized()
+    {
+        return preg_match('~^\s*webmasterEmail: john.doe@example.com$~m',
+            file_get_contents($this->dir . '/app/config/default.neon'));
+    }
+
     /** @return array */
     public function getErrors()
     {

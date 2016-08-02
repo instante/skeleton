@@ -17,6 +17,11 @@ require_once $autoloaderPath;
 require_once __DIR__ . '/ProjectDeployer.php';
 
 $projectDeployer = new ProjectDeployer($baseDir);
+if ($projectDeployer->checkProjectInitialized()) {
+    header('location:init-project.php');
+    die("Project is not initialized yet.\n\n"
+        . "Please run init-project.php first.\n");
+}
 if ($projectDeployer->checkProjectConfigured()) {
     header('content-type:text/plain');
     die("Project is deployed.\n\nRe-deploy disabled for security reasons.\n"

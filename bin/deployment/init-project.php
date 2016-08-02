@@ -11,8 +11,8 @@ require_once __DIR__ . '/ProjectInitializer.php';
 $projectInitializer = new ProjectInitializer($baseDir);
 if ($projectInitializer->checkProjectConfigured()) {
     header('content-type:text/plain');
-    die("Project is initialized.\n\nRe-initialize disabled for security reasons.\n"
-        . 'Delete the app/config/environment file to re-initialize.');
+    die("\nProject is initialized.\n\nRe-initialize disabled for security reasons.\n"
+        . "Delete the app/config/environment file to re-initialize.\n\n");
 }
 
 if (php_sapi_name() === 'cli') {

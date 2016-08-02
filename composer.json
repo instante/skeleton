@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "nette/nette": "~2.3",
+        "nette/nette": "2.4.*",
         "instante/require-js": "~1.1",
         "instante/doctrine": "~1.1",
         "instante/bootstrap": "~1.0",

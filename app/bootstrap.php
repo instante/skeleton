@@ -13,7 +13,12 @@ $paths = [ //additional paths
     'config' => __DIR__ . '/config',
 ];
 
-require_once $paths['vendor'] . '/autoload.php';
+$autoloadPath = $paths['vendor'] . '/autoload.php';
+if (!file_exists($autoloadPath)) {
+    die('Please run \'composer install\' first.');
+}
+
+require_once $autoloadPath;
 
 return (new Bootstrapper($paths))
     ->addRobotLoadedPaths($paths['app'])

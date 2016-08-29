@@ -5,13 +5,7 @@
 parameters:
     webmasterEmail:
 
-
-nette:
-    application:
-        catchExceptions: no
-
-    container:
-        debugger: yes # aktivuje panel v Debugger baru
-
+application:
+    catchExceptions: no
 
 services:

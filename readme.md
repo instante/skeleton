@@ -25,7 +25,7 @@ Create new application using Instante:
 4. initialize new git repository in project's folder:
 
         git init
-        bin/git/setup-git.sh
+        # on windows, use bin/git/setup-git.cmd to use LF line endings
         git add .
         git commit -m "initial commit"
 

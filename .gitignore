@@ -15,6 +15,7 @@
 /frontend/bower_components/
 /frontend/node_modules/
 /frontend/tmp/
+/frontend/RequireJSDependencies.json
 
 /tests/temp
 /tests/php.ini

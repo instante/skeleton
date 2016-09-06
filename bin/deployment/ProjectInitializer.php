@@ -92,6 +92,7 @@ class ProjectInitializer
         $this->updateComposerJson();
         $this->updateBowerJson();
         $this->updatePackageJson();
+        $this->deployIndex();
     }
 
     private function configureWebmasterEmail()
@@ -197,5 +198,11 @@ class ProjectInitializer
             echo $error . "\n";
         }
 
+    }
+
+    private function deployIndex()
+    {
+        unlink($this->dir . '/www/index.php');
+        rename($this->dir . '/www/index.uninitialized.php', $this->dir . '/www/index.php');
     }
 }

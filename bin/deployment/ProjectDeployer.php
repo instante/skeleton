@@ -42,8 +42,7 @@ class ProjectDeployer
 
     public function checkProjectInitialized()
     {
-        return preg_match('~^\s*webmasterEmail: john.doe@example.com$~m',
-            file_get_contents($this->dir . '/app/config/default.neon'));
+        return file_exists($this->dir . '/www/index.uninitialized.php');
     }
 
     /** @return array */

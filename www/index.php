@@ -4,9 +4,14 @@ if (PHP_VERSION_ID < 50600) {
     // Rather give user-friendly error message here.
     die ('Instante needs PHP version 5.6+');
 }
-// Uncomment this line if you must temporarily take down your site for maintenance.
-// require '.maintenance.php';
-// Let bootstrap create Dependency Injection container.
+
+if (file_exists($mt = __DIR__ . '/.maintenance.php')) {
+    // Maintenance mode active - prevent access to the application
+    require $mt;
+    exit;
+}
+
+// Let bootstrap create DI container.
 $container = require __DIR__ . '/../app/bootstrap.php';
 
 // Run application.

@@ -5,6 +5,8 @@
 
 pushd "$(dirname "$0")/.."
 
+cp app/.maintenance.php www/.maintenance.php
+
 git pull
 composer install
 bin/purge-cache.sh
@@ -14,5 +16,7 @@ cd frontend
 npm install
 node_modules/bower/bin/bower install
 node_modules/grunt-cli/bin/grunt dist
+
+rm -f www/.maintenance.php
 
 popd

@@ -1,3 +1,4 @@
+/tests/skeleton export=ignore
 /tests/skeleton-test.sh export-ignore
 /.travis.yml export-ignore
 /license.md export-ignore

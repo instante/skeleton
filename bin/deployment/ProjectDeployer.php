@@ -45,6 +45,23 @@ class ProjectDeployer
         return file_exists($this->dir . '/www/index.uninitialized.php');
     }
 
+    public function checkDatabaseExists($dbName)
+    {
+        $conn = new \mysqli($this->dbHost, $this->dbUser, $this->dbPassword);
+        if ($conn->connect_error) {
+            return false;
+        }
+        else {
+            $sql="CREATE DATABASE IF NOT EXISTS ".$dbName;
+            if ($conn->query($sql) === TRUE) {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+    }
+
     /** @return array */
     public function getErrors()
     {
@@ -56,6 +73,20 @@ class ProjectDeployer
         if ($this->checkProjectConfigured()) {
             throw new InvalidStateException('Cannot initialize already configured project');
         }
+
+        if(!$this->checkDatabaseExists($this->dbName)){
+            die('Database doesn\'t exists and could\'t be created automatically with given credentials.');
+
+        }
+
+        if ($this->dbTestName)
+        {
+            if(!$this->checkDatabaseExists($this->dbTestName)){
+                die('Test database doesn\'t exists and could\'t be created automatically with given credentials.');
+
+            }
+        }
+
         $this->configureLocalNeon();
         $this->configureEnvironment();
         $out = `php {$this->dir}/www/index.php orm:generate-proxies`;

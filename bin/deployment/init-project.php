@@ -26,7 +26,7 @@ if (php_sapi_name() === 'cli') {
 
 if (!empty($_POST['install'])) {
     $projectInitializer
-        ->setWebmasterEmail($_POST['webmasterEmail'])
+        ->setWebmasterEmail($_POST['webmaster_email'])
         ->setProjectMeta($_POST['project_name'], $_POST['project_description'], $_POST['project_license'], $_POST['project_version'])
         ->setAuthor($_POST['author_name'], $_POST['author_email'])
         ->initialize();

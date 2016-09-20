@@ -5,7 +5,10 @@ ini_set('display_errors', 'on');
 error_reporting(E_ALL);
 
 $baseDir = realpath(__DIR__ . '/../..');
-require_once $baseDir . '/vendor/autoload.php';
+
+require_once __DIR__ . '/helpers/composer.php';
+loadComposer($baseDir);
+
 require_once __DIR__ . '/ProjectInitializer.php';
 
 $projectInitializer = new ProjectInitializer($baseDir);

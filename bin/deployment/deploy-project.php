@@ -6,16 +6,10 @@ error_reporting(E_ALL);
 
 
 $baseDir = realpath(__DIR__ . '/../..');
-$autoloaderPath = $baseDir . '/vendor/autoload.php';
 
-if (!file_exists($autoloaderPath)) {
-    header('content-type:text/plain');
-    die("\nComposer was not installed, you need to run \"composer install\" first\n\n");
-}
+require_once __DIR__ . '/helpers/composer.php';
+loadComposer($baseDir);
 
-
-
-require_once $autoloaderPath;
 require_once __DIR__ . '/ProjectDeployer.php';
 
 $projectDeployer = new ProjectDeployer($baseDir);

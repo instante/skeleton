@@ -4,9 +4,10 @@
 
     <h1 n:inner-block="title" class="text-center">Instante project initialization</h1>
 
+    {include '@steps.latte'}
+
     <p>Fill these values to instantly get your project ready! These values will be written into nette, composer,
-        node
-        and bower configurations respectively.</p>
+        node and bower configurations respectively.</p>
 
     <form method="POST" class="form-horizontal">
         <fieldset>
@@ -57,9 +58,15 @@
             </div>
         </fieldset>
 
+        <p class="text-warning">Don't forget to customize readme.md and license.md.</p>
+        <p class="text-warning">
+            After successful initialization, you can submit your initial commit and setup local configuration.
+        </p>
+
         <div class="form-group">
             <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                <input name="install" type="submit" value="Install" class="form-control btn btn-success"/>
+                <input name="install" type="submit" value="Initialize with these values"
+                       class="form-control btn btn-success"/>
             </div>
         </div>
 

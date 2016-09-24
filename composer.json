@@ -1,6 +1,6 @@
 {
     "name": "instante/skeleton",
-    "description": "PROJECT NAME",
+    "description": "Instante - instant Nette web application devstack",
     "config": {
         "vendor-dir": "./vendor"
     },

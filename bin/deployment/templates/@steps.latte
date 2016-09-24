@@ -6,35 +6,52 @@
     .steps .step {
         padding: 20px 0;
         border-bottom: 1px solid #eee;
+        position: relative;
     }
 
     .steps .step .step-content {
         padding-left: 60px;
     }
 
+    .steps .step .step-content h2 {
+        font-size: 18px;
+        margin-top: 0;
+    }
+
+    .steps .step .step-content, .steps .step .step-content h2 {
+        color: #999;
+    }
+
     .steps .step .step-number {
         width: 40px;
         height: 40px;
         border-radius: 20px;
-        line-height: 40px; /* - 2 * border */
-        margin-top: 3px;
+        line-height: 40px;
         vertical-align: middle;
         text-align: center;
         font-size: 20px;
         font-weight: bold;
-        background-color: #4dbbe5;
+        background-color: #ccc;
         color: #fff;
-        float: left;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
-    .steps .step h2 {
-        font-size: 18px;
-        color: #0e2d3b;
-        margin-top: 0;
+    .steps .step.active .step-content {
+        color: #000;
+    }
+
+    .steps .step.active .step-number {
+        background-color: {$colorPrLight|noescape};
+    }
+
+    .steps .step.active .step-content h2 {
+        color: {$colorPrDark|noescape};
     }
 </style>
 <div class="steps">
-    <div class="step">
+    <div n:class="step, $active === 1 ? 'active'">
         <div class="step-number">1</div>
         <div class="step-content">
             <h2>Initialize project</h2>
@@ -42,7 +59,7 @@
             <code>php bin/deployment/init-project.php</code>
         </div>
     </div>
-    <div class="step">
+    <div n:class="step, $active === 2 ? 'active'">
         <div class="step-number">2</div>
         <div class="step-content">
             <h2>Deploy on new machine</h2>
@@ -50,11 +67,12 @@
             <code>php bin/deployment/deploy-project.php</code>
         </div>
     </div>
-    <div class="step">
+    <div n:class="step, $active === 3 ? 'active'">
         <div class="step-number">3</div>
         <div class="step-content">
             <h2>Re-deploy project</h2>
-            On re-deploying updated version, database model should be updated, caches cleared etc.<br>
+            On re-deploying updated version, database model should be updated, caches cleared etc.
+            This needs no interaction, no browser wizard is available for this step.<br>
             <code>bin/redeploy.sh</code>.
         </div>
     </div>

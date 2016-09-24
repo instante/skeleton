@@ -2,8 +2,5 @@
 # Configuration applied only in debug mode
 #
 
-parameters:
-    webmasterEmail:
-
 application:
     catchExceptions: no

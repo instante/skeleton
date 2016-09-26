@@ -1,6 +1,17 @@
 <?php
 use Instante\Deployment\ProjectInitializer;
 
+function redirectToProject()
+{
+    $uri = $_SERVER['REQUEST_URI'];
+    $path = preg_replace('~\?.*$~', '', $uri);
+    $initPath = '/bin/deployment/init-project.php';
+    if (preg_match("~$initPath$~", $path)) {
+        $uri = preg_replace("~$initPath$~", '/www/', $path);
+    }
+    header('location: ' . $uri);
+}
+
 ini_set('display_errors', 'on');
 error_reporting(E_ALL);
 
@@ -41,7 +52,7 @@ if (!empty($_POST['install'])) {
             . '. Install file was NOT deleted.';
     } else {
         unlink(__FILE__);
-        header('location: ' . $_SERVER['REQUEST_URI']);
+        redirectToProject();
     }
     die;
 }

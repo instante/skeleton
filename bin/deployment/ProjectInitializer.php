@@ -207,6 +207,12 @@ class ProjectInitializer
         foreach ($this->errors as $error) {
             echo $error . "\n";
         }
+        if (count($this->errors) === 0) {
+            $this->removeItself();
+            echo "\nProject successfully initialized, init script removed\n\n";
+        } else {
+            echo "\nErrors occurred, init script was not removed\n\n";
+        }
 
     }
 
@@ -214,5 +220,12 @@ class ProjectInitializer
     {
         unlink($this->dir . '/www/index.php');
         rename($this->dir . '/www/index.uninitialized.php', $this->dir . '/www/index.php');
+    }
+
+    public function removeItself()
+    {
+        unlink(__DIR__ . '/ProjectInitializer.php');
+        unlink(__DIR__ . '/init-project.php');
+        unlink(__DIR__ . '/templates/init.latte');
     }
 }

@@ -45,13 +45,14 @@ if (!empty($_POST['install'])) {
     header('content-type:text/plain');
     $numErrors = count($projectInitializer->getErrors());
     if ($numErrors > 0) {
+        // TODO do it also with shell init
         foreach ($projectInitializer->getErrors() as $error) {
             echo $error . "\n";
         }
         echo 'There were ' . ($numErrors > 1 ? $numErrors . ' errors' : $numErrors . ' error')
             . '. Install file was NOT deleted.';
     } else {
-        unlink(__FILE__);
+        $projectInitializer->removeItself();
         redirectToProject();
     }
     die;

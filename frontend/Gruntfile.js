@@ -1,6 +1,10 @@
-module.exports = function (grunt)
+module.exports = function(grunt)
 {
     'use strict';
+
+    var rjs = grunt.option('rjs') || false;
+
+    var requireJsTask = 'requirejs' + (rjs ? ':' + rjs : '');
 
     var jscripts = {
         common: [
@@ -27,7 +31,7 @@ module.exports = function (grunt)
         watch: {
             scripts: {
                 files: ['<%= jscripts %>'],
-                tasks: ['newer:requirejs', 'requirejs-dependencies']
+                tasks: ['requirejs-dependencies']
             },
             styles: {
                 files: [
@@ -134,10 +138,10 @@ module.exports = function (grunt)
     grunt.loadNpmTasks('grunt-newer');
 
     grunt.registerTask('default', ['dev']);
-    grunt.registerTask('dist', ['newer:requirejs', 'requirejs-dependencies', 'less:build']);
-    grunt.registerTask('dev', ['dist', 'watch']);
+    grunt.registerTask('dist', [requireJsTask, 'requirejs-dependencies', 'less:build']);
+    grunt.registerTask('dev', ['requirejs-dependencies', 'less:build', 'watch']);
 
-    grunt.registerTask('requirejs-dependencies', 'Generates dependency tree of requirejs modules for PHP', function ()
+    grunt.registerTask('requirejs-dependencies', 'Generates dependency tree of requirejs modules for PHP', function()
     {
         var madge = require('madge');
         var dependencies = madge(['./src/js'], {

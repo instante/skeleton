@@ -11,7 +11,8 @@ includes:
     - users.neon
     - extensions.neon
 parameters:
-    webmasterEmail: john.doe@example.com
+    errorNotifyEmail: john.doe@example.com
+    useSourceJavaScripts: no
     paths:
         frontend: %paths.root%/frontend
 
@@ -26,8 +27,8 @@ application:
         *: App\*Module\Presenters\*Presenter
 
 tracy:
-    email: %webmasterEmail%
-    strictMode: TRUE
+    email: %errorNotifyEmail%
+    strictMode: yes
 
 session:
     autoStart: smart

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This is displayed to the user when web enters the maintenance mode using bin/redeploy.sh script.
+ * Customize by your needs here what you want to display to users during app updates.
+ */
+
 header('HTTP/1.1 503 Service Unavailable');
 header('Retry-After: 300'); // 5 minutes in seconds
 
@@ -10,9 +15,9 @@ header('Retry-After: 300'); // 5 minutes in seconds
 <meta name="generator" content="Nette Framework">
 
 <style>
-	body { color: #333; background: white; width: 500px; margin: 100px auto }
-	h1 { font: bold 47px/1.5 sans-serif; margin: .6em 0 }
-	p { font: 21px/1.5 Georgia,serif; margin: 1.5em 0 }
+    body { color: #333; background: white; width: 500px; margin: 100px auto }
+    h1 { font: bold 47px/1.5 sans-serif; margin: .6em 0 }
+    p { font: 21px/1.5 Georgia,serif; margin: 1.5em 0 }
 </style>
 
 <title>Site is temporarily down for maintenance</title>
@@ -20,7 +25,3 @@ header('Retry-After: 300'); // 5 minutes in seconds
 <h1>We're Sorry</h1>
 
 <p>The site is temporarily down for maintenance. Please try again in a few minutes.</p>
-
-<?php
-
-exit;

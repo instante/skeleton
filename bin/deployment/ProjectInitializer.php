@@ -12,7 +12,7 @@ class ProjectInitializer
     private $dir;
 
     /** @var string */
-    private $webmasterEmail;
+    private $errorNotifyEmail;
     /** @var string */
     private $projectName;
     /** @var string */
@@ -40,12 +40,12 @@ class ProjectInitializer
     }
 
     /**
-     * @param string $webmasterEmail \
+     * @param string $errorNotifyEmail \
      * @return $this
      */
-    public function setWebmasterEmail($webmasterEmail)
+    public function setErrorNotifyEmail($errorNotifyEmail)
     {
-        $this->webmasterEmail = $webmasterEmail;
+        $this->errorNotifyEmail = $errorNotifyEmail;
         return $this;
     }
 
@@ -88,27 +88,28 @@ class ProjectInitializer
         if ($this->checkProjectConfigured()) {
             throw new InvalidStateException('Cannot initialize already configured project');
         }
-        $this->configureWebmasterEmail();
+        $this->configureErrorNotifyEmail();
         $this->updateComposerJson();
         $this->updateBowerJson();
         $this->updatePackageJson();
+        $this->deployIndex();
     }
 
-    private function configureWebmasterEmail()
+    private function configureErrorNotifyEmail()
     {
         $defaultNeonPath = $this->dir . '/app/config/default.neon';
-        if (!file_exists($defaultNeonPath))
-        {
-            $this->errors[] = 'Webmaster e-mail not written into default.neon - no app/config/default.neon file found.';
+        if (!file_exists($defaultNeonPath)) {
+            $this->errors[]
+                = 'Error notifications e-mail not written into default.neon - no app/config/default.neon file found.';
             return;
         }
         $defaultNeon = file_get_contents($defaultNeonPath);
         $count = 0;
-        file_put_contents($defaultNeonPath, preg_replace('~webmasterEmail: .*~',
-            'webmasterEmail: ' . Neon::encode($this->webmasterEmail), $defaultNeon, -1, $count));
-        if ($count === 0)
-        {
-            $this->errors[] = 'Webmaster e-mail not written into default.neon - string "webmasterEmail: " to be replaced not found.';
+        file_put_contents($defaultNeonPath, preg_replace('~errorNotifyEmail: .*~',
+            'errorNotifyEmail: ' . Neon::encode($this->errorNotifyEmail), $defaultNeon, -1, $count));
+        if ($count === 0) {
+            $this->errors[]
+                = 'Error notifications e-mail not written into default.neon - string "errorNotifyEmail: " to be replaced not found.';
         }
     }
 
@@ -121,16 +122,18 @@ class ProjectInitializer
         $bowerJsonConfig['description'] = $this->projectDescription;
         $bowerJsonConfig['license'] = $this->projectLicense;
         $bowerJsonConfig['version'] = $this->projectVersion;
-        $bowerJsonConfig['authors'] = [
-            $this->authorName,
-        ];
+        $bowerJsonConfig['authors'] = [];
+        if ($this->authorName) {
+            $bowerJsonConfig['authors'][] = $this->authorName;
+        }
         $bowerJson = Json::encode($bowerJsonConfig, Json::PRETTY);
         if (file_put_contents($bowerJsonFilePath, $bowerJson) === FALSE) {
             $this->errors[] = 'Bower.json config could not be written at [' . $bowerJsonFilePath . ']';
         }
     }
 
-    private function updatePackageJson() {
+    private function updatePackageJson()
+    {
         $packageJsonFilePath = $this->dir . '/frontend/package.json';
         $packageJson = file_get_contents($packageJsonFilePath);
         $packageJsonConfig = Json::decode($packageJson, Json::FORCE_ARRAY);
@@ -138,7 +141,11 @@ class ProjectInitializer
         $packageJsonConfig['description'] = $this->projectDescription;
         $packageJsonConfig['license'] = $this->projectLicense;
         $packageJsonConfig['version'] = $this->projectVersion;
-        $packageJsonConfig['author'] = $this->authorName;
+        if ($this->authorName) {
+            $packageJsonConfig['author'] = $this->authorName;
+        } else {
+            unset($packageJsonConfig['author']);
+        }
         $packageJson = Json::encode($packageJsonConfig, Json::PRETTY);
         file_put_contents($packageJsonFilePath, $packageJson);
         if (file_put_contents($packageJsonFilePath, $packageJson) === FALSE) {
@@ -154,25 +161,28 @@ class ProjectInitializer
         $composerJsonConfig['name'] = $this->projectName;
         $composerJsonConfig['description'] = $this->projectDescription;
         $composerJsonConfig['license'] = $this->projectLicense;
-        $composerJsonConfig['version'] = $this->projectVersion;
-        $composerJsonConfig['authors'] = [
-            [
-                'name' => $this->authorName,
-                'email' => $this->authorEmail,
-            ],
-        ];
+        $author = [];
+        if ($this->authorName) {
+            $author['name'] = $this->authorName;
+        }
+        if ($this->authorEmail) {
+            $author['email'] = $this->authorEmail;
+        }
+        if ($author) {
+            $composerJsonConfig['authors'] = $author;
+        }
         $composerJson = Json::encode($composerJsonConfig, Json::PRETTY);
-        if (FALSE === file_put_contents($composerJsonFilePath, $composerJson)) {
+        if (file_put_contents($composerJsonFilePath, $composerJson) === FALSE) {
             $this->errors[] = 'Composer.json config could not be written at [' . $composerJsonFilePath . ']';
         }
     }
 
     public function initializeFromConsole()
     {
-        $stdin = fopen("php://stdin","r");
+        $stdin = fopen("php://stdin", "r");
 
-        echo "Webmaster's e-mail > ";
-        $this->webmasterEmail = trim(fgets($stdin));
+        echo "E-mail for error notifications > ";
+        $this->errorNotifyEmail = trim(fgets($stdin));
 
         echo "Project's composer / bower / node package name (vendor/project) > ";
         $this->projectName = trim(fgets($stdin));
@@ -197,6 +207,25 @@ class ProjectInitializer
         foreach ($this->errors as $error) {
             echo $error . "\n";
         }
+        if (count($this->errors) === 0) {
+            $this->removeItself();
+            echo "\nProject successfully initialized, init script removed\n\n";
+        } else {
+            echo "\nErrors occurred, init script was not removed\n\n";
+        }
 
+    }
+
+    private function deployIndex()
+    {
+        unlink($this->dir . '/www/index.php');
+        rename($this->dir . '/www/index.uninitialized.php', $this->dir . '/www/index.php');
+    }
+
+    public function removeItself()
+    {
+        unlink(__DIR__ . '/ProjectInitializer.php');
+        unlink(__DIR__ . '/init-project.php');
+        unlink(__DIR__ . '/templates/init.latte');
     }
 }

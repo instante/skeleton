@@ -4,15 +4,21 @@
 
 /temp
 /log
+/vendor
 !temp/.htaccess
 !temp/web.config
 !log/.htaccess
 !log/web.config
+!vendor/.htaccess
+!vendor/web.config
 
 /frontend/bower_components/
 /frontend/node_modules/
 /frontend/tmp/
+/frontend/RequireJSDependencies.json
 
 /tests/temp
 /tests/php.ini
 /tests/php-local.ini
+
+/www/.maintenance.php

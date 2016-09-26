@@ -1,18 +1,25 @@
 {
     "name": "instante/skeleton",
-    "description": "PROJECT NAME",
+    "description": "Instante - instant Nette web application devstack",
     "config": {
         "vendor-dir": "./vendor"
     },
+    "license": [
+        "BSD-3-Clause",
+        "GPL-2.0",
+        "GPL-3.0"
+    ],
     "require": {
-        "php": ">=5.5.0",
-        "nette/nette": "~2.3",
+        "php": ">=5.6.0",
+        "nette/nette": "~2.4",
         "instante/require-js": "~1.1",
         "instante/doctrine": "~1.1",
-        "instante/bootstrap": "~1.0"
+        "instante/bootstrap": "~1.0",
+        "instante/ui": "~1.0.3"
     },
     "require-dev": {
         "nette/tester": "@dev",
-        "jakub-onderka/php-parallel-lint": "~0.6"
+        "jakub-onderka/php-parallel-lint": "~0.6",
+        "instante/php-test-suite": "@dev"
     }
 }

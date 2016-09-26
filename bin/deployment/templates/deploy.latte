@@ -1,0 +1,110 @@
+{layout '@layout.latte'}
+{block content}
+
+<h1 n:inner-block="title" class="text-center" data-instante-deployment>Instante local deployment</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            {include '@steps.latte' active=>2}
+        </div>
+        <div class="col-md-8">
+
+            <form method="POST" class="form-horizontal form-init">
+
+                <fieldset>
+                    <legend>Environment:</legend>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="environment">* Local environment type:</label>
+                        <div class="col-sm-8">
+                            <select id="environment" name="environment" class="form-control"
+                                    aria-describedby="environment_help" required>
+                                <option value="">- please select -</option>
+                                <option value="development">development</option>
+                                <option value="stage">stage</option>
+                                <option value="production">production</option>
+                            </select>
+                            <span id="environment_help" class="help-block">
+                                <code>app/config/environment</code> file will be created
+                                to indicate what local environment should be used
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8 col-sm-offset-4">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="secure" name="secure"
+                                           aria-describedby="secure_help"> Use secure routes (HTTPS)
+                                </label>
+                            </div>
+                            <span id="secure_help" class="help-block">
+                                Written into local.neon:parameters:routes:secure, configures
+                                app router to (not) use HTTPS as default for routes
+                            </span>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <fieldset>
+                    <legend>Local database:</legend>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="database_host">Host:</label>
+
+                        <div class="col-sm-8">
+                            <input id="database_host" name="database_host" value="127.0.0.1" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="database_name">Database (schema) name:</label>
+
+                        <div class="col-sm-8">
+                            <input id="database_name" name="database_name" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="database_test_name">
+                            Database name for tests (optional):
+                        </label>
+
+                        <div class="col-sm-8">
+                            <input id="database_test_name" name="database_test_name" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="database_user">User:</label>
+
+                        <div class="col-sm-8">
+                            <input id="database_user" name="database_user" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="database_password">Password:</label>
+
+                        <div class="col-sm-8">
+                            <input id="database_password" type="password" name="database_password"
+                                   class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8 col-sm-offset-4">
+                            <span class="help-block">
+                                Written into local.neon:parameters:database
+                            </span>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <p>Fill these values to instantly initialize your local copy! This script will configure local
+                    environment, database credentials etc. for you.</p>
+
+                <div class="form-group">
+
+                    <input name="install" type="submit" value="Install" class="btn btn-success"/>
+                </div>
+        </div>
+
+        </form>
+
+    </div>

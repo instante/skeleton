@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 5.5
   - 5.6
   - 7
 
@@ -9,11 +8,7 @@ services:
   - mysql
 
 before_script:
-  - mkdir deploytest
-  - cd deploytest
   - composer self-update
-  - composer create-project instante/skeleton . "dev-$TRAVIS_BRANCH" --no-interaction --stability="dev" --prefer-source
-  - ./vendor/bin/parallel-lint -e php,phpt --exclude vendor .
   - mysql -e 'create database instante collate utf8_general_ci; create database instante_test collate utf8_general_ci;'
 
 script: ./tests/skeleton-test.sh

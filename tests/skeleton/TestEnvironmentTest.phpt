@@ -2,6 +2,7 @@
 
 namespace Instante\Tests;
 
+use Instante\Tests\Doctrine\DoctrineTestCase;
 use Tester\Assert;
 
 $context = require '../integration/bootstrap.php';
@@ -9,7 +10,7 @@ $context = require '../integration/bootstrap.php';
 /**
  * A simple check of functionality of integration tests bootstrap
  */
-class TestEnvironmentTest extends DatabaseTest
+class TestEnvironmentTest extends DoctrineTestCase
 {
     public function testNothing()
     {
@@ -17,4 +18,4 @@ class TestEnvironmentTest extends DatabaseTest
     }
 }
 
-(new TestEnvironmentTest($context))->run();
+TestEnvironmentTest::createFromContainer($context)->run();

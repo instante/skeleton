@@ -8,32 +8,29 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="">
-        <meta name="robots" content="{$robots}" n:ifset="$robots">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="robots" content="{$robots}" n:ifset="$robots">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{block title|striptags}HOMEPAGE{/block}</title>
+    <title>{block title|striptags}HOMEPAGE{/block}</title>
 
-        <link rel="stylesheet" href="{$basePath}/css/main.min.css">
-        
+    <link rel="stylesheet" href="{$basePath}/css/main.min.css">
 
-        {block head}{/block}
-    </head>
 
-    <body>
-        <script> document.documentElement.className += ' js'</script>
-        <div class="container">
-            <h1>Application layout</h1>
-            {include #content}
-        </div>
-        <script type="application/json" id="instanteStartupJS" n:ifset="$jsContainer">
-            {$jsContainer->getModules()}
-        </script>
-        <script src="{$basePath}/js/script.min.js"></script>
-        {block scripts}{/block}
-    </body>
+    {block head}{/block}
+</head>
+
+<body>
+<script> document.documentElement.className += ' js'</script>
+<div class="container">
+    <h1>Application layout</h1>
+    {include #content}
+</div>
+{control jsLoader}
+{block scripts}{/block}
+</body>
 </html>
 

@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 pushd "$(dirname "$0")/.."
 
+rm -rf temp/deploytest
+git checkout-index --prefix=temp/deploytest/ -a
+cd temp/deploytest
+composer install --no-interaction
+./vendor/bin/parallel-lint -e php,phpt --exclude vendor .
+
+if [ $? != 0 ]; then
+    >&2 echo "failed: lint failed"
+    popd
+    exit 8
+fi
+
 echo -e "test@doe.com\nfoo/bar\ndescriptiontest\nlicensetest\nvertest\nauthorname\nauthormail\n" | php ./bin/deployment/init-project.php 1> /dev/null
 
 if [ $? -ne 0 ]; then
@@ -20,11 +32,10 @@ fi
 if [ `cat composer.json | grep "foo/bar" | wc -l` != 1 \
     -o `cat composer.json | grep "descriptiontest" | wc -l` != 1 \
     -o `cat composer.json | grep "licensetest" | wc -l` != 1 \
-    -o `cat composer.json | grep "vertest" | wc -l` != 1 \
     -o `cat composer.json | grep "authorname" | wc -l` != 1 \
     -o `cat composer.json | grep "authormail" | wc -l` != 1 \
     ]; then
-    >&2 echo "failed: composer.json does not contain one of package name, description, license, author name, author e-mail or version"
+    >&2 echo "failed: composer.json does not contain one of package name, description, license, author name or author e-mail"
     popd
     exit 3
 fi
@@ -80,6 +91,9 @@ fi
 
 ./vendor/bin/tester ./tests -p php
 EXITCODE=$?
+
+cd ..
+rm -rf deploytest
 
 popd
 

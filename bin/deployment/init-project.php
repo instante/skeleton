@@ -1,17 +1,6 @@
 <?php
 use Instante\Deployment\ProjectInitializer;
 
-function redirectToProject()
-{
-    $uri = $_SERVER['REQUEST_URI'];
-    $path = preg_replace('~\?.*$~', '', $uri);
-    $initPath = '/bin/deployment/init-project.php';
-    if (preg_match("~$initPath$~", $path)) {
-        $uri = preg_replace("~$initPath$~", '/www/', $path);
-    }
-    header('location: ' . $uri);
-}
-
 ini_set('display_errors', 'on');
 error_reporting(E_ALL);
 
@@ -20,6 +9,7 @@ $baseDir = realpath(__DIR__ . '/../..');
 require_once __DIR__ . '/helpers/composer.php';
 loadComposer($baseDir);
 
+require_once __DIR__ . '/helpers/common.php';
 require_once __DIR__ . '/ProjectInitializer.php';
 
 $projectInitializer = new ProjectInitializer($baseDir);

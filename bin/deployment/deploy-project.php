@@ -10,6 +10,7 @@ $baseDir = realpath(__DIR__ . '/../..');
 require_once __DIR__ . '/helpers/composer.php';
 loadComposer($baseDir);
 
+require_once __DIR__ . '/helpers/common.php';
 require_once __DIR__ . '/ProjectDeployer.php';
 
 $projectDeployer = new ProjectDeployer($baseDir);
@@ -45,7 +46,7 @@ if (!empty($_POST['install'])) {
         }
         echo 'There were ' . ($numErrors > 1 ? $numErrors . ' errors' : $numErrors . ' error');
     } else {
-        header('location: ' . $_SERVER['REQUEST_URI']);
+        redirectToProject();
     }
     die;
 }

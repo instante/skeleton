@@ -1,4 +1,4 @@
-define('nette/ajax', ['jquery', 'window'], function($, window)
+define(['jquery', 'window'], function($, window)
 {
     var nette = function()
     {

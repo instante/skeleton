@@ -1,3 +1,4 @@
+// TODO replace with instante/event
 define('instante/events', ['instante/debug/console'], function (DebugConsole)
 {
 

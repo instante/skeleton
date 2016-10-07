@@ -87,17 +87,6 @@ module.exports = function(grunt)
                 }
             }
         },
-        csssplit: {
-            dist: {
-                src: ['<%= path.out %>css/main.min.css'],
-                dest: '<%= path.out %>css/main.min.css',
-                options: {
-                    maxSelectors: 4095,
-                    maxPages: 3,
-                    suffix: '.ie-'
-                }
-            }
-        },
         'clean': {
             options: {
                 force: true
@@ -128,14 +117,12 @@ module.exports = function(grunt)
     });
 
     grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-csssplit');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks('grunt-mocha-require-phantom');
-    grunt.loadNpmTasks('grunt-newer');
 
     grunt.registerTask('default', ['dev']);
     grunt.registerTask('dist', [requireJsTask, 'requirejs-dependencies', 'less:build']);

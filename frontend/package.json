@@ -19,7 +19,6 @@
         "grunt-contrib-nodeunit": "~0.2.0",
         "grunt-contrib-requirejs": "^0.4.4",
         "grunt-contrib-watch": "^0.6.1",
-        "grunt-csssplit": "^0.4.0",
         "grunt-lib-phantomjs": "^1.1.0",
         "grunt-mocha-require-phantom": "^0.8.0",
         "grunt-text-replace": "^0.4.0",

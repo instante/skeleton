@@ -61,6 +61,13 @@ install node.js, then use shell commands:
 
 the watchdog starts to automatically compile less and js on any change.
 
+NOTE: npm module grunt-mocha-require-phantom:0.8.0 has a dependency
+on grunt-lib-phantomjs:0.7.0 which is broken on MacOS 10.12 and maybe
+others. To temporarily fix this until my pull request is merged
+into g-m-r-p, copy `frontend/node_modules/grunt-lib-phantomjs` folder
+into `frontend/node_modules/g-m-r-p.../node_modules` and replace
+the one here.
+
 Managing composer packages:
 ---------------------------
 

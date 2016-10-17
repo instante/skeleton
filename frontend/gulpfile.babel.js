@@ -12,18 +12,21 @@ import cssnano from 'gulp-cssnano';
 import rjs from 'gulp-requirejs-optimize';
 import svgstore from 'gulp-svgstore';
 import svgmin from 'gulp-svgmin';
+import imagemin from 'gulp-imagemin';
 
 const src = {
     scripts: 'src/js',
     views: 'src/js/views',
     less: 'src/less',
-    svg: 'src/svg'
+    svg: 'src/svg',
+    img: 'src/img'
 };
 
 const dist = {
     scripts: '../www/js',
     styles: '../www/css',
-    svg: '../www/svg'
+    svg: '../www/svg',
+    img: '../www/img'
 };
 
 const rjsConfig = {
@@ -103,11 +106,19 @@ gulp.task('svg', function()
         .pipe(gulp.dest(dist.svg));
 });
 
+gulp.task('images', function()
+{
+    return gulp.src(path.join(src.img, '/*'))
+        .pipe(imagemin())
+        .pipe(gulp.dest(dist.img));
+});
+
 gulp.task('watch', () =>
 {
     gulp.watch(src.scripts + '/**/*.js', ['scripts']);
     gulp.watch(src.scripts + '/**/*.js', ['requirejs-dependencies']);
     gulp.watch(src.svg + '/*.svg', ['svg']);
+    gulp.watch(src.img + '/*', ['images']);
 });
 
-gulp.task('default', ['watch', 'scripts', 'requirejs-dependencies', 'svg']);
+gulp.task('default', ['watch', 'scripts', 'requirejs-dependencies', 'svg', 'images']);

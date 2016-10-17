@@ -22,6 +22,7 @@ if (!empty($_POST['install'])) {
         ->setErrorNotifyEmail($_POST['error_log_email'])
         ->setProjectMeta($_POST['project_name'], $_POST['project_description'], $_POST['project_license'], $_POST['project_version'])
         ->setAuthor($_POST['author_name'], $_POST['author_email'])
+        ->setCssPreprocessor($_POST['css_preprocessor'])
         ->initialize();
     header('content-type:text/plain');
     $numErrors = count($projectInitializer->getErrors());

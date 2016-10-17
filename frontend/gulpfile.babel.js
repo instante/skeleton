@@ -14,11 +14,15 @@ import svgstore from 'gulp-svgstore';
 import svgmin from 'gulp-svgmin';
 import imagemin from 'gulp-imagemin';
 import rename from 'gulp-rename';
+import sass from 'gulp-sass';
+import cssGlobbing from 'gulp-css-globbing';
+import notify from 'gulp-notify';
 
 const src = {
     scripts: 'src/js',
     views: 'src/js/views',
     less: 'src/less',
+    sass: 'src/sass',
     svg: 'src/svg',
     img: 'src/img'
 };
@@ -37,6 +41,11 @@ const rjsConfig = {
 
 };
 
+const sassConfig = {
+    errLogToConsole: true,
+    outputStyle: 'expanded'
+};
+
 function getFolders(dir)
 {
     return fs.readdirSync(dir)
@@ -53,8 +62,12 @@ gulp.task('scripts', () =>
             .pipe(babel({
                 presets: ['es2015']
             }))
-            .pipe(rjs((file) => {
-                return Object.assign({include: path.join('views', folder, file.relative ), out: folder + '.js'}, rjsConfig);
+            .pipe(rjs((file) =>
+            {
+                return Object.assign({
+                    include: path.join('views', folder, file.relative),
+                    out: folder + '.js'
+                }, rjsConfig);
             }))
             .pipe(concat(folder + '.js'))
             .pipe(sourcemaps.write('.'))
@@ -62,7 +75,8 @@ gulp.task('scripts', () =>
     );
 });
 
-gulp.task('less', () => {
+gulp.task('less', () =>
+{
     gulp.src(path.join(src.less, '/**/*.less'))
         .pipe(sourcemaps.init())
         .pipe(less())
@@ -76,6 +90,40 @@ gulp.task('less', () => {
             }
         ))
         .pipe(rename('main.min.css'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(dist.styles));
+});
+
+gulp.task('sass', () =>
+{
+    gulp.src(path.join(src.sass, '/**/*.scss'))
+        .pipe(cssGlobbing({
+            extensions: ['.scss'],
+            autoReplaceBlock: {
+                onOff: true,
+                globBlockBegin: 'cssGlobbingBegin',
+                globBlockEnd: 'cssGlobbingEnd',
+                globBlockContents: 'modules/*.scss'
+            },
+            scssImportPath: {
+                leading_underscore: false,
+                filename_extension: false
+            }
+        }))
+        .pipe(sourcemaps.init())
+        .pipe(sass(sassConfig).on('error', notify.onError(function(error)
+        {
+            return 'Problem file : ' + error.message;
+        })))
+        .pipe(gulp.dest(dist.styles))
+        .pipe(cssnano(
+            {
+                discardComments: {
+                    removeAll: true
+                }
+            }
+        ))
+        .pipe(rename({ extname: '.min.css' }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(dist.styles));
 });
@@ -94,15 +142,17 @@ gulp.task('requirejs-dependencies', () =>
 gulp.task('svg', function()
 {
     return gulp.src(path.join(src.svg, '/*.svg'))
-        .pipe(svgmin(function (file) {
+        .pipe(svgmin(function(file)
+        {
             var prefix = path.basename(file.relative, path.extname(file.relative));
             return {
-                plugins: [{
-                    cleanupIDs: {
-                        prefix: prefix + '-',
-                        minify: true
-                    }
-                }]
+                plugins: [
+                    {
+                        cleanupIDs: {
+                            prefix: prefix + '-',
+                            minify: true
+                        }
+                    }]
             }
         }))
         .pipe(svgstore())
@@ -122,7 +172,8 @@ gulp.task('watch', () =>
     gulp.watch(src.scripts + '/**/*.js', ['requirejs-dependencies']);
     gulp.watch(src.svg + '/*.svg', ['svg']);
     gulp.watch(src.img + '/*', ['images']);
-    gulp.watch(src.less + '**/*.less', ['less']);
+    //gulp.watch(src.less + '/**/*.less', ['less']);
+    gulp.watch(src.sass + '/**/*.scss', ['sass']);
 });
 
-gulp.task('default', ['watch', 'scripts', 'requirejs-dependencies', 'svg', 'images', 'less']);
+gulp.task('default', ['watch', 'scripts', 'requirejs-dependencies', 'svg', 'images', 'sass']);

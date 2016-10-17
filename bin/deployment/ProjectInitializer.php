@@ -27,6 +27,8 @@ class ProjectInitializer
     private $authorEmail;
     /** @var array */
     private $errors = [];
+    /** @var array */
+    private $bootstrap = [];
 
     /**
      * ProjectInitializer constructor.
@@ -74,6 +76,24 @@ class ProjectInitializer
     {
         $this->authorName = $name;
         $this->authorEmail = $email;
+        return $this;
+    }
+
+    /**
+     * @param string $preprocessor
+     * @return $this
+     */
+    public function setCssPreprocessor($preprocessor) {
+        switch($preprocessor) {
+            case 'sass':
+                $this->bootstrap = ['name' => 'bootstrap-sass', 'version' => '3.3.7'];
+                break;
+            case 'less':
+                $this->bootstrap = ['name' => 'bootstrap', 'version' => '3.3.4'];
+                break;
+            default:
+                $this->errors[] = 'Bootstrap not set';
+        }
         return $this;
     }
 
@@ -126,6 +146,7 @@ class ProjectInitializer
         if ($this->authorName) {
             $bowerJsonConfig['authors'][] = $this->authorName;
         }
+        $bowerJsonConfig['dependencies'] = array_merge($bowerJsonConfig['dependencies'], [$this->bootstrap['name'] => $this->bootstrap['version']]);
         $bowerJson = Json::encode($bowerJsonConfig, Json::PRETTY);
         if (file_put_contents($bowerJsonFilePath, $bowerJson) === FALSE) {
             $this->errors[] = 'Bower.json config could not be written at [' . $bowerJsonFilePath . ']';

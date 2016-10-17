@@ -10,16 +10,20 @@ import sourcemaps from 'gulp-sourcemaps';
 import less from 'gulp-less';
 import cssnano from 'gulp-cssnano';
 import rjs from 'gulp-requirejs-optimize';
+import svgstore from 'gulp-svgstore';
+import svgmin from 'gulp-svgmin';
 
 const src = {
     scripts: 'src/js',
     views: 'src/js/views',
-    less: 'src/less'
+    less: 'src/less',
+    svg: 'src/svg'
 };
 
 const dist = {
     scripts: '../www/js',
-    styles: '../www/css'
+    styles: '../www/css',
+    svg: '../www/svg'
 };
 
 const rjsConfig = {
@@ -81,10 +85,29 @@ gulp.task('requirejs-dependencies', () =>
     fs.writeFile('RequireJSDependencies.json', JSON.stringify(dependencies.dependencies));
 });
 
+gulp.task('svg', function()
+{
+    return gulp.src(path.join(src.svg, '/*.svg'))
+        .pipe(svgmin(function (file) {
+            var prefix = path.basename(file.relative, path.extname(file.relative));
+            return {
+                plugins: [{
+                    cleanupIDs: {
+                        prefix: prefix + '-',
+                        minify: true
+                    }
+                }]
+            }
+        }))
+        .pipe(svgstore())
+        .pipe(gulp.dest(dist.svg));
+});
+
 gulp.task('watch', () =>
 {
     gulp.watch(src.scripts + '/**/*.js', ['scripts']);
-    //gulp.watch(src.scripts + '/**/*.js', ['requirejs-dependencies']);
+    gulp.watch(src.scripts + '/**/*.js', ['requirejs-dependencies']);
+    gulp.watch(src.svg + '/*.svg', ['svg']);
 });
 
-gulp.task('default', ['watch', 'scripts']);
+gulp.task('default', ['watch', 'scripts', 'requirejs-dependencies', 'svg']);

@@ -20,6 +20,8 @@
     "gulp-less": "^3.1.0",
     "gulp-requirejs-optimize": "^1.2.0",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-svgmin": "^1.2.3",
+    "gulp-svgstore": "^6.0.0",
     "path": "^0.12.7"
   }
 }

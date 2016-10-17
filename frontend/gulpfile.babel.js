@@ -13,6 +13,7 @@ import rjs from 'gulp-requirejs-optimize';
 import svgstore from 'gulp-svgstore';
 import svgmin from 'gulp-svgmin';
 import imagemin from 'gulp-imagemin';
+import rename from 'gulp-rename';
 
 const src = {
     scripts: 'src/js',
@@ -65,7 +66,8 @@ gulp.task('less', () => {
     gulp.src(path.join(src.less, '/**/*.less'))
         .pipe(sourcemaps.init())
         .pipe(less())
-        .pipe(concat('main.min.css'))
+        .pipe(concat('main.css'))
+        .pipe(gulp.dest(dist.styles))
         .pipe(cssnano(
             {
                 discardComments: {
@@ -73,6 +75,7 @@ gulp.task('less', () => {
                 }
             }
         ))
+        .pipe(rename('main.min.css'))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(dist.styles));
 });
@@ -119,6 +122,7 @@ gulp.task('watch', () =>
     gulp.watch(src.scripts + '/**/*.js', ['requirejs-dependencies']);
     gulp.watch(src.svg + '/*.svg', ['svg']);
     gulp.watch(src.img + '/*', ['images']);
+    gulp.watch(src.less + '**/*.less', ['less']);
 });
 
-gulp.task('default', ['watch', 'scripts', 'requirejs-dependencies', 'svg', 'images']);
+gulp.task('default', ['watch', 'scripts', 'requirejs-dependencies', 'svg', 'images', 'less']);

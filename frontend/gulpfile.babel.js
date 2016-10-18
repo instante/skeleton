@@ -21,8 +21,8 @@ import notify from 'gulp-notify';
 const src = {
     scripts: 'src/js',
     views: 'src/js/views',
-    less: 'src/less',
-    sass: 'src/sass',
+    /* less start */less: 'src/less',/* less end */
+    /* sass start */sass: 'src/sass',/* sass end */
     svg: 'src/svg',
     img: 'src/img'
 };
@@ -40,11 +40,12 @@ const rjsConfig = {
     generateSourceMaps: false,
 
 };
-
+/* sass start */
 const sassConfig = {
     errLogToConsole: true,
     outputStyle: 'expanded'
 };
+/* sass end */
 
 function getFolders(dir)
 {
@@ -74,7 +75,7 @@ gulp.task('scripts', () =>
             .pipe(gulp.dest(dist.scripts))
     );
 });
-
+/* less start */
 gulp.task('less', () =>
 {
     gulp.src(path.join(src.less, '/**/*.less'))
@@ -93,7 +94,8 @@ gulp.task('less', () =>
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(dist.styles));
 });
-
+/* less end */
+/* sass start */
 gulp.task('sass', () =>
 {
     gulp.src(path.join(src.sass, '/**/*.scss'))
@@ -127,6 +129,7 @@ gulp.task('sass', () =>
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(dist.styles));
 });
+/* sass end */
 
 gulp.task('requirejs-dependencies', () =>
 {

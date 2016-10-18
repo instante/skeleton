@@ -261,9 +261,9 @@ class ProjectInitializer
 
     public function removeItself()
     {
-        //unlink(__DIR__ . '/ProjectInitializer.php');
-        //unlink(__DIR__ . '/init-project.php');
-        //unlink(__DIR__ . '/templates/init.latte');
+        unlink(__DIR__ . '/ProjectInitializer.php');
+        unlink(__DIR__ . '/init-project.php');
+        unlink(__DIR__ . '/templates/init.latte');
     }
 
     /**

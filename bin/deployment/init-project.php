@@ -1,5 +1,6 @@
 <?php
 use Instante\Deployment\ProjectInitializer;
+
 ini_set('display_errors', 'on');
 error_reporting(E_ALL);
 $baseDir = realpath(__DIR__ . '/../..');

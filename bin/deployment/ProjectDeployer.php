@@ -149,7 +149,7 @@ class ProjectDeployer
         $stdin = fopen("php://stdin", "r");
 
         echo "\n\n\nSelect local environment ( [d]evelopment | [s]tage | [p]roduction ):\n";
-        while (!in_array($c = strtolower(trim(fgets($stdin))[0]), ['d', 's', 'p'])) {
+        while (!in_array($c = substr(strtolower(trim(fgets($stdin))), 0, 1), ['d', 's', 'p'])) {
             echo "Type D, S or P and press ENTER\n";
         }
 
@@ -166,7 +166,7 @@ class ProjectDeployer
         }
 
         echo "Use secure routes (HTTPS)? ( [y]es | [n]o ):\n";
-        while (!in_array($c = strtolower(trim(fgets($stdin))[0]), ['y', 'n'])) {
+        while (!in_array($c = substr(strtolower(trim(fgets($stdin))), 0, 1), ['y', 'n'])) {
             echo "Type Y or N and press ENTER\n";
         }
 

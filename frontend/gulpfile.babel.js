@@ -7,16 +7,16 @@ import concat from 'gulp-concat';
 import Dependo from 'dependo';
 import babel from 'gulp-babel';
 import sourcemaps from 'gulp-sourcemaps';
-import less from 'gulp-less';
+/* less start */import less from 'gulp-less';/* less end */
 import cssnano from 'gulp-cssnano';
 import rjs from 'gulp-requirejs-optimize';
 import svgstore from 'gulp-svgstore';
 import svgmin from 'gulp-svgmin';
 import imagemin from 'gulp-imagemin';
 import rename from 'gulp-rename';
-import sass from 'gulp-sass';
+/* sass start */import sass from 'gulp-sass';
 import cssGlobbing from 'gulp-css-globbing';
-import notify from 'gulp-notify';
+import notify from 'gulp-notify';/* sass end */
 
 const src = {
     scripts: 'src/js',
@@ -175,8 +175,8 @@ gulp.task('watch', () =>
     gulp.watch(src.scripts + '/**/*.js', ['requirejs-dependencies']);
     gulp.watch(src.svg + '/*.svg', ['svg']);
     gulp.watch(src.img + '/*', ['images']);
-    //gulp.watch(src.less + '/**/*.less', ['less']);
-    gulp.watch(src.sass + '/**/*.scss', ['sass']);
+    /* less start */gulp.watch(src.less + '/**/*.less', ['less']);/* less end */
+    /* sass start */gulp.watch(src.sass + '/**/*.scss', ['sass']);/* sass end */
 });
 
-gulp.task('default', ['watch', 'scripts', 'requirejs-dependencies', 'svg', 'images', 'sass']);
+gulp.task('default', ['watch', 'scripts', 'requirejs-dependencies', 'svg', 'images', /* sass start */'sass'/* sass end *//* less start */'less'/* less end */]);

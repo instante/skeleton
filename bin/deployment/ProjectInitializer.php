@@ -87,14 +87,30 @@ class ProjectInitializer
         switch($preprocessor) {
             case 'sass':
                 $this->bootstrap = ['name' => 'bootstrap-sass', 'version' => '3.3.7'];
+                $this->removeDirecory($this->dir . '/frontend/src/less');
                 break;
             case 'less':
                 $this->bootstrap = ['name' => 'bootstrap', 'version' => '3.3.4'];
+                $this->removeDirecory($this->dir . '/frontend/src/sass');
                 break;
             default:
                 $this->errors[] = 'Bootstrap not set';
         }
+        $this->configureGulpfile($preprocessor);
         return $this;
+    }
+
+    /**
+     * @param $preprocessor
+     */
+    public function configureGulpfile($preprocessor) {
+        $gulpfileFilePath = $this->dir . '/frontend/gulpfile.babel.js';
+        $gulpfile = file_get_contents($gulpfileFilePath);
+        $gulpfile = preg_replace('~/\* '.$preprocessor.' start \*/(.*?)/\* '.$preprocessor.' end \*/~s', ' ', $gulpfile);
+        $gulpfile = str_replace(['/* less start */', '/* less end */', '/* sass start */', '/* sass end */'], ['','','',''], $gulpfile);
+        if (file_put_contents($gulpfileFilePath, $gulpfile) === FALSE) {
+            $this->errors[] = 'Gulpfile.babel.json config could not be written at [' . $gulpfileFilePath . ']';
+        }
     }
 
     /** @return array */
@@ -245,8 +261,28 @@ class ProjectInitializer
 
     public function removeItself()
     {
-        unlink(__DIR__ . '/ProjectInitializer.php');
-        unlink(__DIR__ . '/init-project.php');
-        unlink(__DIR__ . '/templates/init.latte');
+        //unlink(__DIR__ . '/ProjectInitializer.php');
+        //unlink(__DIR__ . '/init-project.php');
+        //unlink(__DIR__ . '/templates/init.latte');
+    }
+
+    /**
+     * @param $dir
+     */
+    public function removeDirecory($dir) {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (filetype($dir."/".$object) == "dir"){
+                        rrmdir($dir."/".$object);
+                    }else{
+                        unlink($dir."/".$object);
+                    }
+                }
+            }
+            reset($objects);
+            rmdir($dir);
+        }
     }
 }

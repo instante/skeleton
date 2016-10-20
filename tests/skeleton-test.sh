@@ -87,6 +87,13 @@ if ! cmp app/config/local.neon tests/skeleton/local.neon.expected >/dev/null 2>&
 fi
 >&2 echo "local.neon configured properly"
 
+if [ `cat frontend/gulpfile.babel.js | grep "less" | wc -l` != 0 \
+    ]; then
+    >&2 echo "failed: frontend/gulpfile.babel.js contains css preprocessor that have to be removed"
+    popd
+    exit 4
+fi
+>&2 echo "frontend/gulpfile.babel.js configured"
 
 
 ./vendor/bin/tester ./tests -p php

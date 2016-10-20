@@ -13,7 +13,7 @@ if [ $? != 0 ]; then
     exit 8
 fi
 
-echo -e "test@doe.com\nfoo/bar\ndescriptiontest\nlicensetest\nvertest\nauthorname\nauthormail\n" | php ./bin/deployment/init-project.php 1> /dev/null
+echo -e "test@doe.com\nfoo/bar\ndescriptiontest\nlicensetest\nvertest\nauthorname\nauthormail\nsass\n" | php ./bin/deployment/init-project.php 1> /dev/null
 
 if [ $? -ne 0 ]; then
     >&2 echo "failed executing init-project.php: returned exitcode $?"

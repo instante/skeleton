@@ -3,21 +3,28 @@ use Instante\Deployment\ProjectInitializer;
 
 ini_set('display_errors', 'on');
 error_reporting(E_ALL);
+
 $baseDir = realpath(__DIR__ . '/../..');
+
 require_once __DIR__ . '/helpers/composer.php';
 loadComposer($baseDir);
+
 require_once __DIR__ . '/helpers/common.php';
 require_once __DIR__ . '/ProjectInitializer.php';
+
 $projectInitializer = new ProjectInitializer($baseDir);
 if ($projectInitializer->checkProjectConfigured()) {
     header('content-type:text/plain');
     die("\nProject is initialized.\n\nRe-initialize disabled for security reasons.\n"
         . "Delete the app/config/environment file to re-initialize.\n\n");
 }
+
 if (php_sapi_name() === 'cli') {
     $projectInitializer->initializeFromConsole();
     die;
 }
+
+
 if (!empty($_POST['install'])) {
     $projectInitializer
         ->setErrorNotifyEmail($_POST['error_log_email'])
@@ -25,6 +32,7 @@ if (!empty($_POST['install'])) {
         ->setAuthor($_POST['author_name'], $_POST['author_email'])
         ->setCssPreprocessor($_POST['css_preprocessor'])
         ->initialize();
+
     header('content-type:text/plain');
     $numErrors = count($projectInitializer->getErrors());
     if ($numErrors > 0) {
@@ -40,5 +48,6 @@ if (!empty($_POST['install'])) {
     }
     die;
 }
+
 require_once __DIR__ . '/helpers/latte.php';
 latte('init');

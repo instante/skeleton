@@ -71,27 +71,32 @@ class ProjectDeployer
     public function deploy()
     {
         if ($this->checkProjectConfigured()) {
-            throw new InvalidStateException('Cannot initialize already configured project');
+            throw new InvalidStateException("Cannot initialize already configured project\n");
         }
 
         if(!$this->checkDatabaseExists($this->dbName)){
-            die('Database doesn\'t exists and could\'t be created automatically with given credentials.');
+            die("Database doesn't exists and could't be created automatically with given credentials.\n");
 
         }
 
         if ($this->dbTestName)
         {
             if(!$this->checkDatabaseExists($this->dbTestName)){
-                die('Test database doesn\'t exists and could\'t be created automatically with given credentials.');
+                die("Test database doesn't exists and could't be created automatically with given credentials.\n");
 
             }
         }
 
         $this->configureLocalNeon();
         $this->configureEnvironment();
-        $out = `php {$this->dir}/www/index.php orm:generate-proxies`;
-        $out .= "\n\n" . `php {$this->dir}/www/index.php migrations:migrate`;
-        $out .= "\n\n" . `{$this->dir}/bin/git/setup-git.sh`;  // TODO solve execution on windows
+        $out = "";
+        if ($this->isWindows()) {
+            // todo: create migration script for windows
+            $out = `php {$this->dir}/www/index.php orm:generate-proxies`;
+            $out .= "\n\n" . `php {$this->dir}/www/index.php migrations:migrate`;
+        } else {
+            $out .= "\n\n" . `{$this->dir}/bin/migrate.sh`;
+        }
         if (php_sapi_name() === 'cli') {
             echo $out;
         }

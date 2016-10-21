@@ -43,8 +43,8 @@
 install node.js, then use shell commands:
 
     # setup
-    # install grunt CLI and bower as global node.js module
-    your-project/frontend$ npm install -g grunt-cli
+    # install gulp and bower as global node.js module
+    your-project/frontend$ npm install -g gulp
     your-project/frontend$ npm install -g bower
     
     # install local grunt packages
@@ -54,9 +54,11 @@ install node.js, then use shell commands:
     your-project/frontend$ bower install
     
     # start watchdog
-    your-project/frontend$ grunt
+    your-project/frontend$ gulp
 
-the watchdog starts to automatically compile css and requirejs schema on any change.
+the watchdog starts to automatically optimize images and svgs, compile css, js and requirejs schema on any change.
+
+More about frontend build process and folder structure at [frontend/readme.md](frontend/readme.md)
 
 ## Managing composer packages:
 

@@ -179,4 +179,7 @@ gulp.task('watch', () =>
     /* sass start */gulp.watch(src.sass + '/**/*.scss', ['sass']);/* sass end */
 });
 
-gulp.task('default', ['watch', 'scripts', 'requirejs-dependencies', 'svg', 'images', /* sass start */'sass'/* sass end *//* less start */'less'/* less end */]);
+gulp.task('dist', ['scripts', 'requirejs-dependencies', 'svg', 'images', /* sass start */'sass'/* sass end *//* less start */'less'/* less end */]);
+gulp.task('dev', ['watch', 'requirejs-dependencies', 'svg', 'images', /* sass start */'sass'/* sass end *//* less start */'less'/* less end */]);
+
+gulp.task('default', ['dev']);

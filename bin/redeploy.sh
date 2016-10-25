@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-# this script is used to deploy changes from repository (the project has to be configured locally before).
-# add any re-deploy build steps of your application there.
+# This script is used to deploy changes from repository (the project has to be configured locally before).
+# Add any re-deploy build steps of your application there.
 
-pushd "$(dirname "$0")/.." > /dev/null
+cd "$(dirname "$0")/.."
 
 cp app/.maintenance.php www/.maintenance.php
 
@@ -34,5 +34,3 @@ else
 fi
 
 rm -f www/.maintenance.php
-
-popd > /dev/null

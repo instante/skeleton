@@ -1,5 +1,6 @@
-#!/usr/bin/env bash
-pushd "$(dirname "$0")/.." > /dev/null
+#!/usr/bin/env sh
+
+cd "$(dirname "$0")/.." > /dev/null
 
 if [ `ls -la migrations/Version*.php 2>/dev/null | wc -l` -gt 0 ]; then
     echo "executing migrations..."
@@ -7,4 +8,3 @@ if [ `ls -la migrations/Version*.php 2>/dev/null | wc -l` -gt 0 ]; then
 else
     echo "no migrations found, skipping..."
 fi
-popd > /dev/null

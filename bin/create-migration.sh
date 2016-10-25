@@ -1,5 +1,6 @@
-#!/usr/bin/env bash
-pushd "$(dirname "$0")"
+#!/usr/bin/env sh
+
+cd "$(dirname "$0")"
 
 ./migrate.sh
 ./purge-cache.sh
@@ -7,5 +8,3 @@ pushd "$(dirname "$0")"
 cd ".."
 php www/index.php orm:generate-proxies
 php www/index.php migrations:diff
-
-popd

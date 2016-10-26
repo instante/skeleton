@@ -13,6 +13,7 @@ includes:
 parameters:
     errorNotifyEmail: john.doe@example.com
     useSourceJavaScripts: no
+    debugDisabledExplicitly: no
     paths:
         frontend: %paths.root%/frontend
 

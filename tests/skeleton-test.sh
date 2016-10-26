@@ -96,6 +96,9 @@ fi
 EXITCODE=$?
 
 cd ..
-rm -rf deploytest
+
+if [ "$EXITCODE" -eq 0 ]; then
+    rm -rf deploytest
+fi
 
 exit "$EXITCODE"

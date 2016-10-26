@@ -10,5 +10,6 @@ services:
 before_script:
   - composer self-update
   - mysql -e 'create database instante collate utf8_general_ci; create database instante_test collate utf8_general_ci;'
+  - echo "d\ny\ntravis\n\ninstante\ninstante_test\n127.0.0.1\n" > ./tests/skeleton/deploy-script-input
 
 script: ./tests/skeleton-test.sh

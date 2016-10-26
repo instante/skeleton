@@ -25,5 +25,6 @@
 /tests/temp
 /tests/php.ini
 /tests/php-local.ini
+/tests/skeleton/deploy-script-input
 
 /www/.maintenance.php

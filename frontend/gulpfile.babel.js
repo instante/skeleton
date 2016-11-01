@@ -3,7 +3,6 @@
 import fs from 'fs';
 import path from 'path';
 import gulp from 'gulp';
-import concat from 'gulp-concat';
 import Dependo from 'dependo';
 import babel from 'gulp-babel';
 import sourcemaps from 'gulp-sourcemaps';
@@ -20,7 +19,8 @@ import notify from 'gulp-notify';/* sass end */
 
 const src = {
     scripts: 'src/js',
-    views: 'src/js/views',
+    es5: 'src/es5',
+    views: 'src/es5/views',
     /* less start */less: 'src/less',/* less end */
     /* sass start */sass: 'src/sass',/* sass end */
     svg: 'src/svg',
@@ -35,10 +35,10 @@ const dist = {
 };
 
 const rjsConfig = {
-    baseUrl: src.scripts,
-    mainConfigFile: src.scripts + '/require-config.js',
-    generateSourceMaps: false,
-
+    baseUrl: src.es5,
+    mainConfigFile: src.es5 + '/require-config.js',
+    generateSourceMaps: true,
+    preserveLicenseComments: false
 };
 /* sass start */
 const sassConfig = {
@@ -53,27 +53,55 @@ function getFolders(dir)
         .filter((file) => fs.statSync(path.join(dir, file)).isDirectory());
 }
 
-gulp.task('scripts', () =>
+function getCommon()
+{
+    let commonFiles = listFiles(path.join(src.views, 'common'));
+    return [
+        ...commonFiles,
+        'require-config',
+        '../../bower_components/requirejs/require',
+        'instante/container',
+        'bootstrap'
+    ];
+}
+
+function listFiles(dir) {
+    return fs.readdirSync(dir).reduce(function(list, file) {
+        var name = path.join(dir, file);
+        var isDir = fs.statSync(name).isDirectory();
+        return list.concat(isDir ? listFiles(name) : [name.replace(src.es5 + '/', '').replace('.js', '')]);
+    }, []);
+}
+
+gulp.task('es5', (cb) =>
+{
+    gulp.src(path.join(src.scripts, '/**/*.js'))
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(gulp.dest(src.es5))
+        .on('end', () => cb()); // use callback to make script synchronous
+});
+
+gulp.task('scripts', ['es5'], () =>
 {
     let folders = getFolders(src.views);
-
+    let commonFiles = getCommon();
     return folders.map((folder) =>
-        gulp.src(path.join(src.views, folder, '/**/*.js'))
-            .pipe(sourcemaps.init())
-            .pipe(babel({
-                presets: ['es2015']
-            }))
-            .pipe(rjs((file) =>
-            {
-                return Object.assign({
-                    include: path.join('views', folder, file.relative),
-                    out: folder + '.js'
-                }, rjsConfig);
-            }))
-            .pipe(concat(folder + '.js'))
-            .pipe(sourcemaps.write('.'))
-            .pipe(gulp.dest(dist.scripts))
-    );
+    {
+        if (folder !== 'common') {
+            let files = listFiles(path.join(src.views, folder));
+            files = files.concat(commonFiles);
+            gulp.src(path.join(src.es5, '/require-config.js'))
+                .pipe(rjs(
+                    Object.assign({
+                        include: files,
+                        out: folder + '.min.js'
+                    }, rjsConfig)
+                ))
+                .pipe(gulp.dest(dist.scripts));
+        }
+    });
 });
 /* less start */
 gulp.task('less', () =>

@@ -212,5 +212,6 @@ gulp.task('watch', () =>
 
 gulp.task('dist', ['scripts', 'requirejs-dependencies', 'svg', 'images', /* sass start */'sass'/* sass end *//* less start */'less'/* less end */]);
 gulp.task('dev', ['watch', 'requirejs-dependencies', 'svg', 'images', /* sass start */'sass'/* sass end *//* less start */'less'/* less end */]);
+gulp.task('test', ['grunt-tests-cli']);
 
 gulp.task('default', ['dev']);

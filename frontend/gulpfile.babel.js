@@ -16,6 +16,9 @@ import rename from 'gulp-rename';
 /* sass start */import sass from 'gulp-sass';
 import cssGlobbing from 'gulp-css-globbing';
 import notify from 'gulp-notify';/* sass end */
+import gulpGrunt from 'gulp-grunt';
+
+gulpGrunt(gulp);
 
 const src = {
     scripts: 'src/js',
@@ -209,5 +212,6 @@ gulp.task('watch', () =>
 
 gulp.task('dist', ['scripts', 'requirejs-dependencies', 'svg', 'images', /* sass start */'sass'/* sass end *//* less start */'less'/* less end */]);
 gulp.task('dev', ['watch', 'requirejs-dependencies', 'svg', 'images', /* sass start */'sass'/* sass end *//* less start */'less'/* less end */]);
+gulp.task('test', ['grunt-tests-cli']);
 
 gulp.task('default', ['dev']);

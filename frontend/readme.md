@@ -26,6 +26,21 @@ Shown folder structure will be combined into two files: `admin.js` and `front.js
 
 It's recommended to separate JS for each view of your application.
 
+### Tests
+
+NOTE: npm module grunt-mocha-require-phantom:0.8.0 has a dependency
+on grunt-lib-phantomjs:0.7.0 which is broken on MacOS 10.12 and maybe
+others. To temporarily fix this until my pull request is merged
+into g-m-r-p, copy `frontend/node_modules/grunt-lib-phantomjs` folder
+into `frontend/node_modules/grunt-mocha-require-phantom/node_modules`
+and replace the one here.
+
+Usage:
+
+```
+frontend$ gulp test
+```
+
 ## CSS
 Instante provides _less_ and _sass_ support. You can choose one of preprocessors on project init.
 

@@ -10,8 +10,12 @@
   "devDependencies": {
     "babel-core": "^6.17.0",
     "babel-preset-es2015": "^6.16.0",
+    "chai": "^3.5.0",
     "dependo": "^0.1.6",
     "fs": "0.0.1-security",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-lib-phantomjs": "^1.1.0",
+    "grunt-mocha-require-phantom": "^0.8.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
@@ -27,6 +31,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-svgmin": "^1.2.3",
     "gulp-svgstore": "^6.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "squirejs": "^0.2.1"
   }
 }

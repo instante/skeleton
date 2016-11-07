@@ -1,3 +1,5 @@
+// Grunt is used only for running tests, as there is no plugin for gulp to run mocha/requirejs/phantomjs tests.
+
 module.exports = function(grunt)
 {
     'use strict';

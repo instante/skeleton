@@ -1,14 +1,12 @@
 {
-    "name": "YourAppName",
-    "version": "0.1.0",
-    "authors": [
-        "Proof & Reason"
-    ],
+    "name": "",
+    "version": "",
+    "authors": [],
     "description": "",
     "moduleType": [
         "globals"
     ],
-    "license": "proprietary",
+    "license": "",
     "ignore": [
         "**/.*",
         "node_modules",

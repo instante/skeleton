@@ -33,7 +33,10 @@ class ProjectDeployer
      * ProjectInitializer constructor.
      * @param string $dir
      */
-    public function __construct($dir) { $this->dir = $dir; }
+    public function __construct($dir)
+    {
+        $this->dir = $dir;
+    }
 
     public function checkProjectConfigured()
     {
@@ -47,12 +50,12 @@ class ProjectDeployer
 
     public function checkDatabaseExists($dbName)
     {
-        $conn = new \mysqli($this->dbHost, $this->dbUser, $this->dbPassword);
+        // error is handled manually
+        @$conn = new \mysqli($this->dbHost, $this->dbUser, $this->dbPassword);
         if ($conn->connect_error) {
             return false;
-        }
-        else {
-            $sql="CREATE DATABASE IF NOT EXISTS ".$dbName;
+        } else {
+            $sql = "CREATE DATABASE IF NOT EXISTS " . $dbName;
             if ($conn->query($sql) === TRUE) {
                 return true;
             } else {
@@ -74,15 +77,18 @@ class ProjectDeployer
             throw new InvalidStateException('Cannot initialize already configured project');
         }
 
-        if(!$this->checkDatabaseExists($this->dbName)){
-            die('Database doesn\'t exists and could\'t be created automatically with given credentials.');
+        if (!$this->checkDatabaseExists($this->dbName)) {
+            $message = 'Database doesn\'t exists and could\'t be created automatically with given credentials.';
+            $this->errors[] = $message;
+            return $message;
 
         }
 
-        if ($this->dbTestName)
-        {
-            if(!$this->checkDatabaseExists($this->dbTestName)){
-                die('Test database doesn\'t exists and could\'t be created automatically with given credentials.');
+        if ($this->dbTestName) {
+            if (!$this->checkDatabaseExists($this->dbTestName)) {
+                $message = 'Test database doesn\'t exists and could\'t be created automatically with given credentials.';
+                $this->errors[] = $message;
+                return $message;
 
             }
         }

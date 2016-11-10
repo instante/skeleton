@@ -1,6 +1,7 @@
 <?php
 use Instante\Deployment\ProjectDeployer;
 
+require_once __DIR__ . '/helpers/latte.php';
 ini_set('display_errors', 'on');
 error_reporting(E_ALL);
 
@@ -30,7 +31,6 @@ if (php_sapi_name() === 'cli') {
     die;
 }
 
-
 if (!empty($_POST['install'])) {
     $projectDeployer
         ->setDatabaseCredentials($_POST['database_host'], $_POST['database_user'], $_POST['database_password'], $_POST['database_name'], $_POST['database_test_name'])
@@ -38,18 +38,17 @@ if (!empty($_POST['install'])) {
         ->setSecureRoutes(isset($_POST['secure']))
         ->deploy();
 
-    header('content-type:text/plain');
     $numErrors = count($projectDeployer->getErrors());
     if ($numErrors > 0) {
+        $errorMessages = [];
         foreach ($projectDeployer->getErrors() as $error) {
-            echo $error . "\n";
+            $errorMessages[] = $error . "\n";
         }
-        echo 'There were ' . ($numErrors > 1 ? $numErrors . ' errors' : $numErrors . ' error');
+        latte('deploy', ['errorMessages' => $errorMessages]);
     } else {
         redirectToProject();
     }
-    die;
-}
 
-require_once __DIR__ . '/helpers/latte.php';
-latte('deploy');
+} else {
+    latte('deploy');
+}

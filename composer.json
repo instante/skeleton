@@ -1,14 +1,10 @@
 {
-    "name": "instante/skeleton",
-    "description": "Instante - instant Nette web application devstack",
+    "name": "",
+    "description": "",
     "config": {
         "vendor-dir": "./vendor"
     },
-    "license": [
-        "BSD-3-Clause",
-        "GPL-2.0",
-        "GPL-3.0"
-    ],
+    "license": "",
     "require": {
         "php": ">=5.6.0",
         "nette/nette": "~2.4",

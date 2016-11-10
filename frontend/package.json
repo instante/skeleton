@@ -1,12 +1,11 @@
 {
-    "name": "YourAppName",
-    "version": "0.1.0",
+    "name": "",
+    "version": "",
     "description": "",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "Proof & Reason, s.r.o.",
-    "license": "proprietary",
+    "license": "",
     "devDependencies": {
         "chai": "^1.8.1",
         "colors": "0.6.x",

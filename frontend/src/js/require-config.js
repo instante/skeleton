@@ -9,7 +9,8 @@ require.config({
         Math: 'browser-modules',
         Object: 'browser-modules',
         JSON: 'browser-modules',
-        RegExp: 'browser-modules'
+        RegExp: 'browser-modules',
+        bootstrap3: '../../bower_components/bootstrap/dist/js/bootstrap.min'
     },
     shim: {}
 });

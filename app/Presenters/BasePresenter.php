@@ -5,6 +5,7 @@ namespace App\Presenters;
 use Instante\RequireJS\Components\JsLoaderFactory;
 use Kdyby\Doctrine\EntityManager;
 use Nette\Application\UI\Presenter;
+use Instante\RequireJS\JsModuleContainer;
 
 abstract class BasePresenter extends Presenter
 {
@@ -14,6 +15,15 @@ abstract class BasePresenter extends Presenter
 
     /** @var JsLoaderFactory @inject */
     public $jsLoaderFactory;
+
+    /** @var JsModuleContainer @inject */
+    public $jsModuleContainer;
+
+    public function beforeRender()
+    {
+        parent::beforeRender();
+        $this->jsModuleContainer->useModule('bootstrap3');
+    }
 
     /**
      * @param string $module

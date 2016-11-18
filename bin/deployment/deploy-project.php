@@ -30,7 +30,7 @@ if (php_sapi_name() === 'cli') {
     $projectDeployer->deployFromConsole();
     die;
 }
-
+$args = [];
 if (!empty($_POST['install'])) {
     $projectDeployer
         ->setDatabaseCredentials($_POST['database_host'], $_POST['database_user'], $_POST['database_password'], $_POST['database_name'], $_POST['database_test_name'])
@@ -44,11 +44,12 @@ if (!empty($_POST['install'])) {
         foreach ($projectDeployer->getErrors() as $error) {
             $errorMessages[] = $error . "\n";
         }
-        latte('deploy', ['errorMessages' => $errorMessages]);
+        $args['errorMessages'] = $errorMessages;
     } else {
         redirectToProject();
     }
 
-} else {
-    latte('deploy');
 }
+
+latte('deploy', $args);
+

@@ -11,9 +11,11 @@
         <div class="col-md-8">
 
             <form method="POST" class="form-horizontal form-init">
-                <div class="alert alert-danger" n:ifset="$errorMessages" n:foreach="$errorMessages as $errorMessage">
+                {ifset $errorMessages}
+                <div class="alert alert-danger" n:foreach="$errorMessages as $errorMessage">
                     {$errorMessage}
                 </div>
+                {/ifset}
                 <fieldset>
                     <legend>Environment:</legend>
                     <div class="form-group">

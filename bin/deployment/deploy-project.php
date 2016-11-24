@@ -1,7 +1,6 @@
 <?php
 use Instante\Deployment\ProjectDeployer;
 
-require_once __DIR__ . '/helpers/latte.php';
 ini_set('display_errors', 'on');
 error_reporting(E_ALL);
 
@@ -30,6 +29,8 @@ if (php_sapi_name() === 'cli') {
     $projectDeployer->deployFromConsole();
     die;
 }
+
+
 $args = [];
 if (!empty($_POST['install'])) {
     $projectDeployer
@@ -51,5 +52,6 @@ if (!empty($_POST['install'])) {
 
 }
 
+require_once __DIR__ . '/helpers/latte.php';
 latte('deploy', $args);
 

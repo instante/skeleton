@@ -27,6 +27,8 @@ class ProjectInitializer
     private $authorEmail;
     /** @var array */
     private $errors = [];
+    /** @var string */
+    private $cssPreprocessor;
 
     /**
      * ProjectInitializer constructor.
@@ -77,6 +79,15 @@ class ProjectInitializer
         return $this;
     }
 
+    /**
+     * @param string $cssPreprocessor
+     * @return $this
+     */
+    public function setCssPreprocessor($cssPreprocessor) {
+        $this->cssPreprocessor = $cssPreprocessor;
+        return $this;
+    }
+
     /** @return array */
     public function getErrors()
     {
@@ -92,7 +103,49 @@ class ProjectInitializer
         $this->updateComposerJson();
         $this->updateBowerJson();
         $this->updatePackageJson();
+        $this->configureGulpfile();
+        $this->removeUnusedSourceStyles();
         $this->deployIndex();
+    }
+
+    public function configureGulpfile() {
+        $gulpfileFilePath = $this->dir . '/frontend/gulpfile.babel.js';
+        $gulpfile = file_get_contents($gulpfileFilePath);
+
+        $preprocessorToRemove = $this->cssPreprocessor === 'sass' ? 'less' : 'sass';
+        $gulpfile = preg_replace('~/\* '.$preprocessorToRemove.' start \*/(.*?)/\* '.$preprocessorToRemove.' end \*/~s', ' ', $gulpfile);
+        $gulpfile = str_replace(['/* less start */', '/* less end */', '/* sass start */', '/* sass end */'], ['','','',''], $gulpfile);
+
+        if (file_put_contents($gulpfileFilePath, $gulpfile) === FALSE) {
+            $this->errors[] = 'Gulpfile.babel.json config could not be written at [' . $gulpfileFilePath . ']';
+        }
+    }
+
+    public function removeUnusedSourceStyles() {
+        switch($this->cssPreprocessor) {
+            case 'sass':
+                $this->removeDirecory($this->dir . '/frontend/src/less');
+                break;
+            case 'less':
+                $this->removeDirecory($this->dir . '/frontend/src/sass');
+                break;
+            default:
+                $this->errors[] = 'Unknown css preprocessor, predefined styles not removed';
+        }
+    }
+
+    function getBowerDependenciesForBootstrap() {
+        switch($this->cssPreprocessor) {
+            case 'sass':
+                return ['name' => 'bootstrap-sass', 'version' => '3.3.7'];
+                break;
+            case 'less':
+                return ['name' => 'bootstrap', 'version' => '3.3.4'];
+                break;
+            default:
+                $this->errors[] = 'Bower dependencies for preprocessor not set';
+                return false;
+        }
     }
 
     private function configureErrorNotifyEmail()
@@ -125,6 +178,10 @@ class ProjectInitializer
         $bowerJsonConfig['authors'] = [];
         if ($this->authorName) {
             $bowerJsonConfig['authors'][] = $this->authorName;
+        }
+        $bootstrap = $this->getBowerDependenciesForBootstrap();
+        if($bootstrap) {
+            $bowerJsonConfig['dependencies'] = array_merge($bowerJsonConfig['dependencies'], [$bootstrap['name'] => $bootstrap['version']]);
         }
         $bowerJson = Json::encode($bowerJsonConfig, Json::PRETTY);
         if (file_put_contents($bowerJsonFilePath, $bowerJson) === FALSE) {
@@ -202,6 +259,16 @@ class ProjectInitializer
         echo "Author's e-mail > ";
         $this->authorEmail = trim(fgets($stdin));
 
+        echo "CSS preprocessor (sass/less) > ";
+        $selectedPreprocessor = trim(fgets($stdin));
+
+        while($selectedPreprocessor !== 'sass' && $selectedPreprocessor !== 'less') {
+            echo "Please, choose one of supported values: sass/less > ";
+            $selectedPreprocessor = trim(fgets($stdin));
+        };
+
+        $this->cssPreprocessor = $selectedPreprocessor;
+
         $this->initialize();
 
         foreach ($this->errors as $error) {
@@ -227,5 +294,25 @@ class ProjectInitializer
         unlink(__DIR__ . '/ProjectInitializer.php');
         unlink(__DIR__ . '/init-project.php');
         unlink(__DIR__ . '/templates/init.latte');
+    }
+
+    /**
+     * @param $dir
+     */
+    public function removeDirecory($dir) {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (filetype($dir."/".$object) == "dir"){
+                        $this->removeDirecory($dir."/".$object);
+                    }else{
+                        unlink($dir."/".$object);
+                    }
+                }
+            }
+            reset($objects);
+            rmdir($dir);
+        }
     }
 }

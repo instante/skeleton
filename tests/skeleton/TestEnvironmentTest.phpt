@@ -5,7 +5,7 @@ namespace Instante\Tests;
 use Instante\Tests\Doctrine\DoctrineTestCase;
 use Tester\Assert;
 
-$context = require '../integration/bootstrap.php';
+$context = require __DIR__ . '/../integration/bootstrap.php';
 
 /**
  * A simple check of functionality of integration tests bootstrap

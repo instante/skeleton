@@ -2,15 +2,20 @@
 /app/config/environment
 /app/config/developerIps
 
-/temp
-/log
-/vendor
+/temp/*
 !temp/.htaccess
 !temp/web.config
-!log/.htaccess
-!log/web.config
-!vendor/.htaccess
-!vendor/web.config
+!/temp/sessions
+/temp/sessions/*
+!temp/sessions/.gitkeep
+
+/log/*
+!/log/.htaccess
+!/log/web.config
+
+/vendor/*
+!/vendor/.htaccess
+!/vendor/web.config
 
 /frontend/bower_components/
 /frontend/node_modules/
@@ -20,5 +25,6 @@
 /tests/temp
 /tests/php.ini
 /tests/php-local.ini
+/tests/skeleton/deploy-script-input
 
 /www/.maintenance.php

@@ -12,26 +12,24 @@
 [![Latest stable](https://img.shields.io/packagist/v/instante/skeleton.svg)](https://packagist.org/packages/instante/skeleton)
 
 
-Create new application using Instante:
---------------------------------------
+## Create new application using Instante:
 
 1. install skeleton using composer:
 
-        composer create-project instante/skeleton .
+    composer create-project instante/skeleton .
 
 2. customize this readme.md to correspond to your new project (and remove this "Create new application" section)
 3. use bin/deployment/init-project.php to initialize your new project or customize composer.json, frontend/package.json,
  frontend/bower.json with your own project name, description, license etc.
 4. initialize new git repository in project's folder:
 
-        git init
-        # on windows, use bin/git/setup-git.cmd to use LF line endings
-        git add .
-        git commit -m "initial commit"
+    git init
+    # on windows, use bin/git/setup-git.cmd to use LF line endings
+    git add .
+    git commit -m "initial commit"
 
 
-Deploy application:
-------------------------
+## Deploy application:
 
 1. install dependencies by executing `composer install` from project root
 2. Ensure that the database schema exists and is empty. Optionally, you may create one extra database schema for tests.
@@ -40,36 +38,29 @@ Deploy application:
     - log
 4. setup local environment using bin/deployment/deploy-project.php
 
-Develop/compile frontend:
-------------------------
+## Develop/compile frontend:
 
 install node.js, then use shell commands:
 
-        # setup
-        # install grunt CLI and bower as global node.js module
-        your-project/frontend$ npm install -g grunt-cli
-        your-project/frontend$ npm install -g bower
-        
-        # install local grunt packages
-        your-project/frontend$ npm install
-        
-        # install local bower components
-        your-project/frontend$ bower install
-        
-        # start watchdog
-        your-project/frontend$ grunt
+    # setup
+    # install gulp and bower as global node.js module
+    your-project/frontend$ npm install -g gulp
+    your-project/frontend$ npm install -g bower
+    
+    # install local grunt packages
+    your-project/frontend$ npm install
+    
+    # install local bower components
+    your-project/frontend$ bower install
+    
+    # start watchdog
+    your-project/frontend$ gulp
 
-the watchdog starts to automatically compile less and js on any change.
+the watchdog starts to automatically optimize images and svgs, compile css, js and requirejs schema on any change.
 
-NOTE: npm module grunt-mocha-require-phantom:0.8.0 has a dependency
-on grunt-lib-phantomjs:0.7.0 which is broken on MacOS 10.12 and maybe
-others. To temporarily fix this until my pull request is merged
-into g-m-r-p, copy `frontend/node_modules/grunt-lib-phantomjs` folder
-into `frontend/node_modules/g-m-r-p.../node_modules` and replace
-the one here.
+More about frontend build process and folder structure at [frontend/readme.md](frontend/readme.md)
 
-Managing composer packages:
----------------------------
+## Managing composer packages:
 
 To install new dependency - library:
 

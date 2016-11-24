@@ -1,5 +1,6 @@
-#!/usr/bin/env bash
-pushd "$(dirname "$0")/.."
+#!/usr/bin/env sh
+
+cd "$(dirname "$0")/.."
 
 if [ -f "./tests/php-local.ini" ]; then
     cp ./tests/php-local.ini ./tests/php.ini
@@ -30,8 +31,5 @@ esac
 rm -rf ./tests/temp/*
 mkdir -p ./tests/temp/sessions
 ./vendor/bin/tester "./$TESTS_DIR" -p php -c ./tests
-EXITCODE=$?
 
-popd
-
-exit "$EXITCODE"
+exit "$?"

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 dir=${1-instante-app}
 if [ ! -d "$dir" ]; then

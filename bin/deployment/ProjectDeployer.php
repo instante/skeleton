@@ -75,15 +75,16 @@ class ProjectDeployer
         }
 
         if(!$this->checkDatabaseExists($this->dbName)){
-            die("Database doesn't exist and could't be created automatically with given credentials.\n");
+            $this->errors[] = 'Database doesn\'t exists and could\'t be created automatically with given credentials.';
+            return;
 
         }
 
         if ($this->dbTestName)
         {
             if(!$this->checkDatabaseExists($this->dbTestName)){
-                die("Test database doesn't exists and could't be created automatically with given credentials.\n");
-
+                $this->errors[] = 'Test database doesn\'t exists and could\'t be created automatically with given credentials.';
+                return;
             }
         }
 

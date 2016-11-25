@@ -10,7 +10,10 @@ require.config({
         Object: 'browser-modules',
         JSON: 'browser-modules',
         RegExp: 'browser-modules',
-        bootstrap3: '../../bower_components/bootstrap/dist/js/bootstrap.min'
+        bootstrap3: '../../bower_components/bootstrap-sass/assets/javascripts/bootstrap.min'
     },
-    shim: {}
+    shim: {
+        bootstrap3: {
+        deps: ['jquery']
+    }}
 });

@@ -226,7 +226,7 @@ class ProjectInitializer
             $author['email'] = $this->authorEmail;
         }
         if ($author) {
-            $composerJsonConfig['authors'] = $author;
+            $composerJsonConfig['authors'] = [$author];
         }
         $composerJson = Json::encode($composerJsonConfig, Json::PRETTY);
         if (file_put_contents($composerJsonFilePath, $composerJson) === FALSE) {

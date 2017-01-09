@@ -11,7 +11,7 @@ includes:
     - users.neon
     - extensions.neon
 parameters:
-    errorNotifyEmail: john.doe@example.com
+    errorNotifyEmail: ""
     useSourceJavaScripts: no
     debugDisabledExplicitly: no
     paths:

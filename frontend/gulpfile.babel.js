@@ -6,16 +6,16 @@ import gulp from 'gulp';
 import Dependo from 'dependo';
 import babel from 'gulp-babel';
 import sourcemaps from 'gulp-sourcemaps';
-/* less start */import less from 'gulp-less';/* less end */
+ 
 import cssnano from 'gulp-cssnano';
 import rjs from 'gulp-requirejs-optimize';
 import svgstore from 'gulp-svgstore';
 import svgmin from 'gulp-svgmin';
 import imagemin from 'gulp-imagemin';
 import rename from 'gulp-rename';
-/* sass start */import sass from 'gulp-sass';
+import sass from 'gulp-sass';
 import cssGlobbing from 'gulp-css-globbing';
-import notify from 'gulp-notify';/* sass end */
+import notify from 'gulp-notify';
 import gulpGrunt from 'gulp-grunt';
 
 gulpGrunt(gulp);
@@ -24,8 +24,8 @@ const src = {
     scripts: 'src/js',
     es5: 'src/es5',
     views: 'src/es5/views',
-    /* less start */less: 'src/less',/* less end */
-    /* sass start */sass: 'src/sass',/* sass end */
+     
+    sass: 'src/sass',
     svg: 'src/svg',
     img: 'src/img'
 };
@@ -43,12 +43,12 @@ const rjsConfig = {
     generateSourceMaps: true,
     preserveLicenseComments: false
 };
-/* sass start */
+
 const sassConfig = {
     errLogToConsole: true,
     outputStyle: 'expanded'
 };
-/* sass end */
+
 
 function getFolders(dir)
 {
@@ -106,27 +106,8 @@ gulp.task('scripts', ['es5'], () =>
         }
     });
 });
-/* less start */
-gulp.task('less', () =>
-{
-    gulp.src(path.join(src.less, '/**/*.less'))
-        .pipe(sourcemaps.init())
-        .pipe(less())
-        .pipe(concat('main.css'))
-        .pipe(gulp.dest(dist.styles))
-        .pipe(cssnano(
-            {
-                discardComments: {
-                    removeAll: true
-                }
-            }
-        ))
-        .pipe(rename('main.min.css'))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(dist.styles));
-});
-/* less end */
-/* sass start */
+ 
+
 gulp.task('sass', () =>
 {
     gulp.src(path.join(src.sass, '/**/*.scss'))
@@ -160,7 +141,7 @@ gulp.task('sass', () =>
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(dist.styles));
 });
-/* sass end */
+
 
 gulp.task('requirejs-dependencies', () =>
 {
@@ -206,12 +187,12 @@ gulp.task('watch', () =>
     gulp.watch(src.scripts + '/**/*.js', ['requirejs-dependencies']);
     gulp.watch(src.svg + '/*.svg', ['svg']);
     gulp.watch(src.img + '/*', ['images']);
-    /* less start */gulp.watch(src.less + '/**/*.less', ['less']);/* less end */
-    /* sass start */gulp.watch(src.sass + '/**/*.scss', ['sass']);/* sass end */
+     
+    gulp.watch(src.sass + '/**/*.scss', ['sass']);
 });
 
-gulp.task('dist', ['scripts', 'requirejs-dependencies', 'svg', 'images', /* sass start */'sass'/* sass end *//* less start */'less'/* less end */]);
-gulp.task('dev', ['watch', 'requirejs-dependencies', 'svg', 'images', /* sass start */'sass'/* sass end *//* less start */'less'/* less end */]);
+gulp.task('dist', ['scripts', 'requirejs-dependencies', 'svg', 'images', 'sass' ]);
+gulp.task('dev', ['watch', 'requirejs-dependencies', 'svg', 'images', 'sass' ]);
 gulp.task('test', ['grunt-tests-cli']);
 
 gulp.task('default', ['dev']);

@@ -52,7 +52,7 @@ class ProjectDeployer
             return false;
         }
         else {
-            $sql="CREATE DATABASE IF NOT EXISTS ".$dbName;
+            $sql="CREATE DATABASE IF NOT EXISTS `{$dbName}`";
             if ($conn->query($sql) === TRUE) {
                 return true;
             } else {

@@ -21,6 +21,7 @@
 /frontend/node_modules/
 /frontend/tmp/
 /frontend/RequireJSDependencies.json
+/frontend/src/es5/
 
 /tests/temp
 /tests/php.ini

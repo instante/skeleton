@@ -12,9 +12,9 @@
     "require": {
         "php": ">=5.6.0",
         "nette/nette": "~2.4",
-        "instante/require-js": "~1.1",
+        "instante/require-js": "~1.2",
         "instante/doctrine": "~1.1",
-        "instante/bootstrap": "~1.0",
+        "instante/bootstrap": "~1.2.1",
         "instante/ui": "~1.0.3"
     },
     "require-dev": {

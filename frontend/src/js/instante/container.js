@@ -1,4 +1,4 @@
-define('instante/container', ['instante/core', 'instante/configurator'], function (Instante, Configurator)
+define(['./core', './configurator'], function (Instante, Configurator)
 {
 
     return new function ()

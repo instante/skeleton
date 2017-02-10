@@ -1,4 +1,4 @@
-define('nette/core', ['window'], function (window)
+define(['window'], function (window)
 {
     if (!window.JSON) {
         throw 'Nette requires JSON support';

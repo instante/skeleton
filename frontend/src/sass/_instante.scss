@@ -1,0 +1,13 @@
+/*
+ * styles used by instante
+ * for adding your own styles, see main.scss
+ */
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+body.with-navbar-fixed-top {
+    padding-top: $navbar-padding-vertical + $line-height-computed;
+}
+
+.spaced-top {
+    margin-top: $grid-gutter-width;
+}

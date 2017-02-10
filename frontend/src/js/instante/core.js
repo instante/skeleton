@@ -1,4 +1,4 @@
-define('instante/core', ['jquery', 'window', 'nette/core', 'nette/ajax'], function (jQuery, window)
+define(['jquery', 'window', 'nette/core', 'nette/ajax'], function (jQuery, window)
 {
     var $ = jQuery;
     var Instante = this;

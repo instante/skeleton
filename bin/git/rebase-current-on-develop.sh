@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-pushd "$(dirname "$0")/../.." >/dev/null
+cd "$(dirname "$0")/../.." >/dev/null
 
 branch=$(git rev-parse --abbrev-ref HEAD)
 
@@ -8,5 +8,3 @@ git checkout develop
 git pull
 git checkout "$branch"
 git rebase develop
-
-popd >/dev/null

@@ -52,7 +52,7 @@ class ProjectDeployer
             return false;
         }
         else {
-            $sql="CREATE DATABASE IF NOT EXISTS ".$dbName;
+            $sql="CREATE DATABASE IF NOT EXISTS `{$dbName}`";
             if ($conn->query($sql) === TRUE) {
                 return true;
             } else {
@@ -75,15 +75,16 @@ class ProjectDeployer
         }
 
         if(!$this->checkDatabaseExists($this->dbName)){
-            die("Database doesn't exists and could't be created automatically with given credentials.\n");
+            $this->errors[] = 'Database doesn\'t exists and could\'t be created automatically with given credentials.';
+            return;
 
         }
 
         if ($this->dbTestName)
         {
             if(!$this->checkDatabaseExists($this->dbTestName)){
-                die("Test database doesn't exists and could't be created automatically with given credentials.\n");
-
+                $this->errors[] = 'Test database doesn\'t exists and could\'t be created automatically with given credentials.';
+                return;
             }
         }
 
@@ -154,7 +155,7 @@ class ProjectDeployer
         $stdin = fopen("php://stdin", "r");
 
         echo "\n\n\nSelect local environment ( [d]evelopment | [s]tage | [p]roduction ):\n";
-        while (!in_array($c = strtolower(trim(fgets($stdin))[0]), ['d', 's', 'p'])) {
+        while (!in_array($c = substr(strtolower(trim(fgets($stdin))), 0, 1), ['d', 's', 'p'])) {
             echo "Type D, S or P and press ENTER\n";
         }
 
@@ -171,7 +172,7 @@ class ProjectDeployer
         }
 
         echo "Use secure routes (HTTPS)? ( [y]es | [n]o ):\n";
-        while (!in_array($c = strtolower(trim(fgets($stdin))[0]), ['y', 'n'])) {
+        while (!in_array($c = substr(strtolower(trim(fgets($stdin))), 0, 1), ['y', 'n'])) {
             echo "Type Y or N and press ENTER\n";
         }
 

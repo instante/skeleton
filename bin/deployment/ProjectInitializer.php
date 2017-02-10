@@ -27,6 +27,8 @@ class ProjectInitializer
     private $authorEmail;
     /** @var array */
     private $errors = [];
+    /** @var string */
+    private $cssPreprocessor;
 
     /**
      * ProjectInitializer constructor.
@@ -74,6 +76,15 @@ class ProjectInitializer
     {
         $this->authorName = $name;
         $this->authorEmail = $email;
+        return $this;
+    }
+
+    /**
+     * @param string $cssPreprocessor
+     * @return $this
+     */
+    public function setCssPreprocessor($cssPreprocessor) {
+        $this->cssPreprocessor = $cssPreprocessor;
         return $this;
     }
 
@@ -126,6 +137,7 @@ class ProjectInitializer
         if ($this->authorName) {
             $bowerJsonConfig['authors'][] = $this->authorName;
         }
+
         $bowerJson = Json::encode($bowerJsonConfig, Json::PRETTY);
         if (file_put_contents($bowerJsonFilePath, $bowerJson) === FALSE) {
             $this->errors[] = 'Bower.json config could not be written at [' . $bowerJsonFilePath . ']';
@@ -169,7 +181,7 @@ class ProjectInitializer
             $author['email'] = $this->authorEmail;
         }
         if ($author) {
-            $composerJsonConfig['authors'] = $author;
+            $composerJsonConfig['authors'] = [$author];
         }
         $composerJson = Json::encode($composerJsonConfig, Json::PRETTY);
         if (file_put_contents($composerJsonFilePath, $composerJson) === FALSE) {
@@ -202,6 +214,16 @@ class ProjectInitializer
         echo "Author's e-mail > ";
         $this->authorEmail = trim(fgets($stdin));
 
+        echo "CSS preprocessor (sass/less) > ";
+        $selectedPreprocessor = trim(fgets($stdin));
+
+        while($selectedPreprocessor !== 'sass' && $selectedPreprocessor !== 'less') {
+            echo "Please, choose one of supported values: sass/less > ";
+            $selectedPreprocessor = trim(fgets($stdin));
+        };
+
+        $this->cssPreprocessor = $selectedPreprocessor;
+
         $this->initialize();
 
         foreach ($this->errors as $error) {
@@ -227,5 +249,25 @@ class ProjectInitializer
         unlink(__DIR__ . '/ProjectInitializer.php');
         unlink(__DIR__ . '/init-project.php');
         unlink(__DIR__ . '/templates/init.latte');
+    }
+
+    /**
+     * @param $dir
+     */
+    public function removeDirecory($dir) {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (filetype($dir."/".$object) == "dir"){
+                        $this->removeDirecory($dir."/".$object);
+                    }else{
+                        unlink($dir."/".$object);
+                    }
+                }
+            }
+            reset($objects);
+            rmdir($dir);
+        }
     }
 }

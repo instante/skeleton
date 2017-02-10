@@ -67,49 +67,48 @@
                             </span>
                         </div>
                     </div>
-                </fieldset>
 
-                <fieldset>
-                    <legend>Author:</legend>
+                    <fieldset>
+                        <legend>Author:</legend>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="author_name">Name:</label>
+
+                            <div class="col-sm-8">
+                                <input id="author_name" name="author_name" class="form-control"
+                                       aria-describedby="author_name_help">
+                                <span id="author_name_help" class="help-block">
+                                    Written into composer.json, package.json and bower.json, optional
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="author_email">Email:</label>
+
+                            <div class="col-sm-8">
+                                <input id="author_email" name="author_email" class="form-control"
+                                       aria-describedby="author_email_help">
+                                <span id="author_email_help" class="help-block">
+                                    Written into composer.json, optional
+                                </span>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <p>Fill these values to instantly get your project ready! These values will be written into nette,
+                        composer,
+                        node and bower configurations respectively.</p>
+                    <p>Don't forget to customize <strong>readme.md</strong>.</p>
+                    <p>
+                        After successful initialization, you can submit your initial commit and setup local configuration.
+                    </p>
+
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="author_name">Name:</label>
-
-                        <div class="col-sm-8">
-                            <input id="author_name" name="author_name" class="form-control"
-                                   aria-describedby="author_name_help">
-                            <span id="author_name_help" class="help-block">
-                                Written into composer.json, package.json and bower.json, optional
-                            </span>
+                        <div class="col-sm-8 col-sm-offset-4">
+                            <input name="install" type="submit" value="Initialize with these values"
+                                   class="btn btn-success">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="author_email">Email:</label>
-
-                        <div class="col-sm-8">
-                            <input id="author_email" name="author_email" class="form-control"
-                                   aria-describedby="author_email_help">
-                            <span id="author_email_help" class="help-block">
-                                Written into composer.json, optional
-                            </span>
-                        </div>
-                    </div>
                 </fieldset>
-
-                <p>Fill these values to instantly get your project ready! These values will be written into nette,
-                    composer,
-                    node and bower configurations respectively.</p>
-                <p>Don't forget to customize <strong>readme.md</strong>.</p>
-                <p>
-                    After successful initialization, you can submit your initial commit and setup local configuration.
-                </p>
-
-                <div class="form-group">
-                    <div class="col-sm-8 col-sm-offset-4">
-                        <input name="install" type="submit" value="Initialize with these values"
-                               class="btn btn-success">
-                    </div>
-                </div>
-
             </form>
         </div>
     </div>

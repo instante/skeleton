@@ -32,22 +32,11 @@ class RouterFactory
                 'id' => NULL,
             ), $secureFlag);
 
-            //router for live tracy errors
-            if ($isDebugMode) {
-                /** @noinspection PhpUnusedParameterInspection */
-                $router[] = new Route('[<? .*>/]log/<filename [a-z0-9-]+>.html', function ($presenter, $filename) {
-                    $path = realpath(__DIR__ . '/../../log/' . $filename . '.html');
-                    return new TextResponse(file_exists($path) ? file_get_contents($path) : 'exception file not found');
-                });
-            }
-
             $router[] = new Route('<presenter>/<action>[/<id>]', array(
                 'presenter' => 'Homepage',
                 'action' => 'default',
                 'id' => NULL,
             ), $secureFlag);
-
-
         }
 
         return $router;

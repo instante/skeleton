@@ -1,4 +1,4 @@
-define('instante/configurator', [], function ()
+define(function ()
 {
 
     return new function ()

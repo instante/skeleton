@@ -17,8 +17,8 @@
         "tests"
     ],
     "dependencies": {
-        "bootstrap": "3.3.4",
         "jquery": "1.11.2",
-        "requirejs": "2.1.19"
+        "requirejs": "2.1.19",
+        "bootstrap-sass": "3.3.7"
     }
 }

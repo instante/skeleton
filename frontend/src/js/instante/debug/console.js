@@ -1,4 +1,4 @@
-define('instante/debug/console', [], function ()
+define(function ()
 {
     /*!
      * JavaScript Debug - v0.4 - 6/22/2010

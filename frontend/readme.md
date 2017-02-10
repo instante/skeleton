@@ -42,21 +42,22 @@ frontend$ gulp test
 ```
 
 ## CSS
-Instante provides _less_ and _sass_ support. You can choose one of preprocessors on project init.
+Instante is prepared with _sass_ support for compiling stylesheets.
 
-### LESS
-Input file `frontend/src/less/main.less` will be outputed to `www/css/main.min.css` - you should separate less styles into separate files and import them to `main.less`
-
-### SASS
-Input files `frontend/src/sass/fileName.sass` will be outputted to `www/css/fileName.min.css` - your separate files (sass modules) placed in `frontend/src/sass/modules/` folder will be combined into `main.min.css` automatically.
+Input files `frontend/src/sass/fileName.sass` will be outputted to
+`www/css/fileName.min.css` - your separate files (sass modules)
+placed in `frontend/src/sass/modules/` folder will be combined
+into `main.min.css` automatically.
 
 ## SVG and images
 
 ### Images
-Gulp optimizes images into `www/img` folder so you can simply save images to `fronted/src/img` folder.
+Gulp optimizes images into `www/img` folder so you can simply save
+images to `fronted/src/img` folder.
 
 ### SVG
-SVGs are combined to one `svg.svg`. You can display svg in template using _#name_ parameter
+SVGs are combined to one `svg.svg`. You can display svg in template
+using _#name_ parameter
 
 ```
 <svg>

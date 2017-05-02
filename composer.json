@@ -15,7 +15,8 @@
         "instante/require-js": "~1.2",
         "instante/doctrine": "~1.1",
         "instante/bootstrap": "~1.2.1",
-        "instante/ui": "~1.0.3"
+        "instante/ui": "~1.0.3",
+        "instante/assets": "^0.1.3"
     },
     "require-dev": {
         "nette/tester": "@dev",
